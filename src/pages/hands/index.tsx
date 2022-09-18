@@ -1,13 +1,17 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
-import { GetAllHandsQuery } from 'types/generated/graphql'
+import { GetAllHandsQuery, useGetAllHandsQuery } from 'types/generated/graphql'
 import { GET_HANDS } from 'queries/queries'
 
 const FetchMain: FC = () => {
-  const { data, error } = useQuery<GetAllHandsQuery>(GET_HANDS, {
-    fetchPolicy: 'cache-and-network',
-  })
+  // TODO どっちがいいのか 動作は同じ？fetchPolicyが設定出来ないだけ？
+
+  // const { data, error } = useQuery<GetAllHandsQuery>(GET_HANDS, {
+  //   fetchPolicy: 'cache-and-network',
+  // })
+  const { data, error } = useGetAllHandsQuery()
+
   if (error) return <p>Error: {error.message}</p>
   return (
     <div title="Hasura fetchPolicy">
