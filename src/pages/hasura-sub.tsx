@@ -34,7 +34,7 @@ const FetchMain: FC = () => {
           </div>
         )
       })}
-      <Link href="/hasura-main">
+      <Link href="/hands">
         <a className="mt-6">Next</a>
       </Link>
     </div>

@@ -1,9 +1,11 @@
 import { useQuery } from '@apollo/client'
+import { Button } from '@mantine/core'
+import { NextLink } from '@mantine/next'
 import { validate } from 'graphql'
 import { initializeApollo } from 'lib/apolloClient'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { GET_HAND_BY_ID, GET_HAND_IDS } from 'queries/queries'
-import React from 'react'
+import React, { useState } from 'react'
 import {
   GetAllHandIDsQuery,
   GetHandByIdQuery,
@@ -18,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await apolloClient.query<GetAllHandIDsQuery>({
     query: GET_HAND_IDS,
   })
-  console.log('getStaticPaths', data.hands)
+  console.log('getStaticPaths', data)
   const paths = data.hands.map((hand) => ({
     params: {
       id: hand.id,
@@ -51,21 +53,13 @@ const OneHand: NextPage<Props> = ({ hand }) => {
   if (!hand) {
     return <div>Loading...</div>
   }
+
   return (
     <div>
       個別ページ
+      <Button component={NextLink} href={`/hands/${hand.id}/edit`}></Button>
       <p>{hand.title}</p>
       <p>{hand.content}</p>
-      {hand.actions.map((action, index) => {
-        return (
-          <div key={index}>
-            <p>{action.street}</p>
-            <p>{action.position}</p>
-            <p>{action.move}</p>
-            <p>{action.size}</p>
-          </div>
-        )
-      })}
     </div>
   )
 }
