@@ -23,16 +23,6 @@ const FetchMain: FC = () => {
             <p>{hand.title}</p>
             <p>{hand.content}</p>
             <p>{hand.id}</p>
-            {hand.actions.map((action, index) => {
-              return (
-                <div key={index}>
-                  <p>{action.street}</p>
-                  <p>{action.position}</p>
-                  <p>{action.move}</p>
-                  <p>{action.size}</p>
-                </div>
-              )
-            })}
           </div>
         )
       })}
