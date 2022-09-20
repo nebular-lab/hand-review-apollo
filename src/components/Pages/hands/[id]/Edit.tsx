@@ -147,7 +147,7 @@ const Edit = () => {
         {loading && <p>loading</p>}
         {data && (
           <>
-            <input className="text-3xl px-3" value={editingTitle} />
+            <div className="text-3xl px-3">{editingTitle} </div>
             <ActionTable />
             <Space h="md" />
             <DraftJSEditor />
