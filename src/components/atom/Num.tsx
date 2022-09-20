@@ -1,17 +1,20 @@
 import { useReactiveVar } from '@apollo/client'
-import { numVar } from 'cache'
-import React from 'react'
+import { Button } from '@mantine/core'
+import React, { memo } from 'react'
+import { useRecoilState } from 'recoil'
+import { settedNumState } from 'store/stores'
 
-const Num = ({ num }: { num: number }) => {
-  const settedNum = useReactiveVar(numVar)
+const Num = memo(({ num }: { num: number }) => {
+  const [settedNum, setSettedNum] = useRecoilState(settedNumState)
   return (
-    <div
-      className="rounded-sm h-9 w-6 justify-center flex items-center text-xl shadow-md"
-      onClick={() => numVar(settedNum * 10 + num)}
+    <Button
+      className="rounded-sm h-9 justify-center flex items-center text-xl shadow-md"
+      onClick={() => setSettedNum(settedNum * 10 + num)}
     >
       {num}
-    </div>
+    </Button>
   )
-}
+})
+Num.displayName = 'Num'
 
 export default Num

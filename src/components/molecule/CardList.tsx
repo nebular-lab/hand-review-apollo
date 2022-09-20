@@ -1,9 +1,13 @@
 import { Grid } from '@mantine/core'
-import Card, { CardMark, CardNum, CardType } from 'components/atom/Card'
-import React from 'react'
+import Card from 'components/atom/Card'
+import _ from 'lodash'
+import React, { memo } from 'react'
+import { useRecoilState } from 'recoil'
+import { editingCardsState } from 'store/stores'
 
-const CardList = () => {
-  const numList: CardNum[] = [
+const CardList = memo(() => {
+  const [editingCards, setEditingCards] = useRecoilState(editingCardsState)
+  const numList: string[] = [
     '2',
     '3',
     '4',
@@ -18,10 +22,27 @@ const CardList = () => {
     'K',
     'A',
   ]
-  const markList: CardMark[] = ['s', 'h', 'd', 'c']
+  const markList: string[] = ['s', 'h', 'd', 'c']
 
+  const onClickCardSelect = () => {}
   return (
     <>
+      <div className="flex gap-1">
+        {editingCards.map((card, index) => (
+          <Card
+            key={index}
+            card={{ num: card.num, mark: card.mark }}
+            isCursor={true}
+            onClick={() => {
+              const _editingCards = _.cloneDeep(editingCards)
+              _editingCards[index].mark = 'w'
+              _editingCards[index].num = 'w'
+              setEditingCards(_editingCards)
+            }}
+          />
+        ))}
+      </div>
+      <div className="h-3"></div>
       {markList.map((mark, index) => {
         return (
           <div key={index} className="flex gap-px">
@@ -30,7 +51,25 @@ const CardList = () => {
               .reverse()
               .map((num) => {
                 return (
-                  <Card key={`${mark}${num}`} card={{ num: num, mark: mark }} />
+                  <Card
+                    key={`${mark}${num}`}
+                    card={{ num: num, mark: mark }}
+                    isCursor={true}
+                    onClick={() => {
+                      let flag = true
+                      const _editingCards = editingCards.map((card) => {
+                        if (card.mark === 'w' && flag) {
+                          console.log('set')
+                          flag = false
+                          return { num: num, mark: mark }
+                        } else {
+                          return card
+                        }
+                      })
+                      console.log(_editingCards)
+                      setEditingCards(_editingCards)
+                    }}
+                  />
                 )
               })}
           </div>
@@ -38,6 +77,8 @@ const CardList = () => {
       })}
     </>
   )
-}
+})
+
+CardList.displayName = 'CardList'
 
 export default CardList

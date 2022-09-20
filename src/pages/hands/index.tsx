@@ -3,6 +3,11 @@ import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { GetAllHandsQuery, useGetAllHandsQuery } from 'types/generated/graphql'
 import { GET_HANDS } from 'queries/queries'
+import { Layout } from 'components/template/Layout'
+import { Button, Space } from '@mantine/core'
+import { NextLink } from '@mantine/next'
+import HandTicket from 'components/molecule/HandTicket'
+import { CardInterface } from 'types/localTypes/types'
 
 const FetchMain: FC = () => {
   // TODO どっちがいいのか 動作は同じ？fetchPolicyが設定出来ないだけ？
@@ -10,30 +15,37 @@ const FetchMain: FC = () => {
   // const { data, error } = useQuery<GetAllHandsQuery>(GET_HANDS, {
   //   fetchPolicy: 'cache-and-network',
   // })
-  const { data, error } = useGetAllHandsQuery()
+  const { data, loading, error } = useGetAllHandsQuery()
 
-  if (error) return <p>Error: {error.message}</p>
   return (
-    <div title="Hasura fetchPolicy">
-      <p className="mb-6 font-bold">Hasura main page</p>
-
-      {data?.hands.map((hand, index) => {
-        console.log(hand)
-        return (
-          <div key={index}>
-            <Link href={`/hands/${hand.id}`}>
-              <button className="text-red-500">個別ページ</button>
+    <Layout title="ハンド一覧">
+      {loading && <p>loading</p>}
+      {error && <p>Error: {error.message}</p>}
+      <p className="mb-6 font-bold text-3xl">ハンド一覧</p>
+      <div className="grid grid-cols-4">
+        {data?.hands.map((hand, index) => {
+          const cardList: CardInterface[] = []
+          hand.hands_cards.map((card, index) => {
+            cardList.push({ num: card.card.num, mark: card.card.mark })
+          })
+          return (
+            <Link href={`/hands/${hand.id}`} key={index}>
+              <a className="no-underline">
+                <HandTicket
+                  cards={cardList}
+                  user={hand.user_id}
+                  title={hand.title}
+                />
+              </a>
             </Link>
-            <p>{hand.title}</p>
-            <p>{hand.content}</p>
-            <p>{hand.id}</p>
-          </div>
-        )
-      })}
-      <Link href="/hasura-sub">
-        <a className="mt-6">Next</a>
-      </Link>
-    </div>
+          )
+        })}
+      </div>
+      <Space h={20} />
+      <Button component={NextLink} href="/">
+        homeへ
+      </Button>
+    </Layout>
   )
 }
 export default FetchMain

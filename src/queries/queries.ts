@@ -6,18 +6,17 @@ export const GET_HANDS = gql`
       id
       title
       content
+      es
       user_id
       created_at
       updated_at
-      street_infos(order_by: { street: asc }) {
+      street_infos {
         id
         hand_id
         street
-        es
-        stack
         created_at
         updated_at
-        actions(order_by: { order: asc }) {
+        actions {
           id
           street_info_id
           position
@@ -27,13 +26,20 @@ export const GET_HANDS = gql`
           created_at
           updated_at
         }
-        street_info_cards {
-          card {
-            id
-            mark
-            num
-          }
+      }
+      hands_cards(order_by: { order: asc }) {
+        card {
+          id
+          num
+          mark
         }
+        order
+      }
+      pots {
+        id
+        hand_id
+        size
+        street
       }
     }
   }
@@ -44,18 +50,17 @@ export const GET_HANDS_LOCAL = gql`
       id
       title
       content
+      es
       user_id
       created_at
       updated_at
-      street_infos(order_by: { street: asc }) {
+      street_infos {
         id
         hand_id
         street
-        es
-        stack
         created_at
         updated_at
-        actions(order_by: { order: asc }) {
+        actions {
           id
           street_info_id
           position
@@ -65,13 +70,20 @@ export const GET_HANDS_LOCAL = gql`
           created_at
           updated_at
         }
-        street_info_cards {
-          card {
-            id
-            mark
-            num
-          }
+      }
+      hands_cards(order_by: { order: asc }) {
+        card {
+          id
+          num
+          mark
         }
+        order
+      }
+      pots {
+        id
+        hand_id
+        size
+        street
       }
     }
   }
@@ -91,18 +103,17 @@ export const GET_HAND_BY_ID = gql`
       id
       title
       content
+      es
       user_id
       created_at
       updated_at
-      street_infos(order_by: { street: asc }) {
+      street_infos {
         id
         hand_id
         street
-        es
-        stack
         created_at
         updated_at
-        actions(order_by: { order: asc }) {
+        actions {
           id
           street_info_id
           position
@@ -112,13 +123,20 @@ export const GET_HAND_BY_ID = gql`
           created_at
           updated_at
         }
-        street_info_cards {
-          card {
-            id
-            mark
-            num
-          }
+      }
+      hands_cards(order_by: { order: asc }) {
+        card {
+          id
+          num
+          mark
         }
+        order
+      }
+      pots {
+        id
+        hand_id
+        size
+        street
       }
     }
   }
@@ -130,18 +148,17 @@ export const GET_HAND_BY_ID_LOCAL = gql`
       id
       title
       content
+      es
       user_id
       created_at
       updated_at
-      street_infos(order_by: { street: asc }) {
+      street_infos {
         id
         hand_id
         street
-        es
-        stack
         created_at
         updated_at
-        actions(order_by: { order: asc }) {
+        actions {
           id
           street_info_id
           position
@@ -151,13 +168,20 @@ export const GET_HAND_BY_ID_LOCAL = gql`
           created_at
           updated_at
         }
-        street_info_cards {
-          card {
-            id
-            mark
-            num
-          }
+      }
+      hands_cards(order_by: { order: asc }) {
+        card {
+          id
+          num
+          mark
         }
+        order
+      }
+      pots {
+        id
+        hand_id
+        size
+        street
       }
     }
   }
