@@ -3,7 +3,8 @@
 https://hand-review-apollo-jaek2bojk-nebular-lab.vercel.app
 
 No Limit Hold'em(ポーカーの一種)の研究のためのノートアプリ
-Qiitaのように記事(ハンドレビュー)を書いて投稿することが出来る
+
+Qiitaのように記事(ハンドレビュー)を書いて投稿して公開することが出来る
 
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/78769350/191332765-3ff46654-403c-40d3-bbcc-7b74d9b6811e.png">
 
