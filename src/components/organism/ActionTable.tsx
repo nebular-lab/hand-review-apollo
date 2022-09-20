@@ -1,39 +1,44 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, Modal } from '@mantine/core'
-import {
-  editingReviewVar,
-  isOpenCardSetterVar,
-  isOpenNumSetterVar,
-} from 'cache'
+import { Button, Modal, Space } from '@mantine/core'
 import CardList from 'components/molecule/CardList'
 import NumSetter from 'components/molecule/NumSetter'
 import React, { useState } from 'react'
+import { useRecoilState } from 'recoil'
+import {
+  editingReviewState,
+  isOpenCardSetterState,
+  isOpenNumSetterState,
+} from 'store/stores'
 import StreetAction from '../molecule/StreetAction'
 
 const ActionTable = () => {
-  const isOpenCardSetter = useReactiveVar(isOpenCardSetterVar)
-  const isOpenNumSetter = useReactiveVar(isOpenNumSetterVar)
-  const editingReview = useReactiveVar(editingReviewVar)
-  // const streets:Street[]=["preflop","flop","turn","river"]
+  const [isOpenCardSetter, setIsOpenCardSetter] = useRecoilState(
+    isOpenCardSetterState
+  )
+  const [isOpenNumSetter, setIsOpenNumSetter] =
+    useRecoilState(isOpenNumSetterState)
+
+  //const editingReview = useReactiveVar(editingReviewVar)
+
   return (
     <div className="flex-col">
       <Modal
         opened={isOpenCardSetter}
-        onClose={() => isOpenCardSetterVar(false)}
+        onClose={() => setIsOpenCardSetter(false)}
       >
         <CardList />
       </Modal>
-      <Modal
-        opened={isOpenNumSetter}
-        onClose={() => isOpenNumSetterVar(false)}
-        title="Introduce yourself!"
-      >
+      <Modal opened={isOpenNumSetter} onClose={() => setIsOpenNumSetter(false)}>
         <NumSetter />
       </Modal>
       {/* preflop ~ river */}
+
       <StreetAction streetIndex={0} />
+
       <StreetAction streetIndex={1} />
+
       <StreetAction streetIndex={2} />
+
       <StreetAction streetIndex={3} />
     </div>
   )

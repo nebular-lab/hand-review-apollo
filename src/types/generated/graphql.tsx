@@ -84,7 +84,7 @@ export type Actions = {
   move: Scalars['String'];
   order: Scalars['Int'];
   position: Scalars['Int'];
-  size?: Maybe<Scalars['Int']>;
+  size: Scalars['Int'];
   /** An object relationship */
   street_info: Street_Info;
   street_info_id: Scalars['uuid'];
@@ -474,33 +474,33 @@ export type Actions_Variance_Order_By = {
 /** columns and relationships of "cards" */
 export type Cards = {
   __typename?: 'cards';
+  /** An array relationship */
+  hands_cards: Array<Hands_Cards>;
+  /** An aggregate relationship */
+  hands_cards_aggregate: Hands_Cards_Aggregate;
   id: Scalars['uuid'];
   mark: Scalars['String'];
   num: Scalars['String'];
-  /** An array relationship */
-  street_info_cards: Array<Street_Info_Cards>;
-  /** An aggregate relationship */
-  street_info_cards_aggregate: Street_Info_Cards_Aggregate;
 };
 
 
 /** columns and relationships of "cards" */
-export type CardsStreet_Info_CardsArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
+export type CardsHands_CardsArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
 };
 
 
 /** columns and relationships of "cards" */
-export type CardsStreet_Info_Cards_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
+export type CardsHands_Cards_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
 };
 
 /** aggregated selection of "cards" */
@@ -530,10 +530,10 @@ export type Cards_Bool_Exp = {
   _and?: InputMaybe<Array<Cards_Bool_Exp>>;
   _not?: InputMaybe<Cards_Bool_Exp>;
   _or?: InputMaybe<Array<Cards_Bool_Exp>>;
+  hands_cards?: InputMaybe<Hands_Cards_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   mark?: InputMaybe<String_Comparison_Exp>;
   num?: InputMaybe<String_Comparison_Exp>;
-  street_info_cards?: InputMaybe<Street_Info_Cards_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "cards" */
@@ -546,10 +546,10 @@ export enum Cards_Constraint {
 
 /** input type for inserting data into table "cards" */
 export type Cards_Insert_Input = {
+  hands_cards?: InputMaybe<Hands_Cards_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']>;
   mark?: InputMaybe<Scalars['String']>;
   num?: InputMaybe<Scalars['String']>;
-  street_info_cards?: InputMaybe<Street_Info_Cards_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -593,10 +593,10 @@ export type Cards_On_Conflict = {
 
 /** Ordering options when selecting data from "cards". */
 export type Cards_Order_By = {
+  hands_cards_aggregate?: InputMaybe<Hands_Cards_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
   mark?: InputMaybe<Order_By>;
   num?: InputMaybe<Order_By>;
-  street_info_cards_aggregate?: InputMaybe<Street_Info_Cards_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: cards */
@@ -665,11 +665,20 @@ export type Hands = {
   __typename?: 'hands';
   content: Scalars['String'];
   created_at: Scalars['timestamptz'];
+  es: Scalars['Float'];
+  /** An array relationship */
+  hands_cards: Array<Hands_Cards>;
+  /** An aggregate relationship */
+  hands_cards_aggregate: Hands_Cards_Aggregate;
   id: Scalars['uuid'];
   /** An array relationship */
   labels: Array<Labels>;
   /** An aggregate relationship */
   labels_aggregate: Labels_Aggregate;
+  /** An array relationship */
+  pots: Array<Pots>;
+  /** An aggregate relationship */
+  pots_aggregate: Pots_Aggregate;
   /** An array relationship */
   street_infos: Array<Street_Info>;
   /** An aggregate relationship */
@@ -677,6 +686,26 @@ export type Hands = {
   title: Scalars['String'];
   updated_at: Scalars['timestamptz'];
   user_id: Scalars['String'];
+};
+
+
+/** columns and relationships of "hands" */
+export type HandsHands_CardsArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+
+/** columns and relationships of "hands" */
+export type HandsHands_Cards_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
 };
 
 
@@ -697,6 +726,26 @@ export type HandsLabels_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Labels_Order_By>>;
   where?: InputMaybe<Labels_Bool_Exp>;
+};
+
+
+/** columns and relationships of "hands" */
+export type HandsPotsArgs = {
+  distinct_on?: InputMaybe<Array<Pots_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Pots_Order_By>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+
+/** columns and relationships of "hands" */
+export type HandsPots_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pots_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Pots_Order_By>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
 };
 
 
@@ -729,9 +778,17 @@ export type Hands_Aggregate = {
 /** aggregate fields of "hands" */
 export type Hands_Aggregate_Fields = {
   __typename?: 'hands_aggregate_fields';
+  avg?: Maybe<Hands_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<Hands_Max_Fields>;
   min?: Maybe<Hands_Min_Fields>;
+  stddev?: Maybe<Hands_Stddev_Fields>;
+  stddev_pop?: Maybe<Hands_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Hands_Stddev_Samp_Fields>;
+  sum?: Maybe<Hands_Sum_Fields>;
+  var_pop?: Maybe<Hands_Var_Pop_Fields>;
+  var_samp?: Maybe<Hands_Var_Samp_Fields>;
+  variance?: Maybe<Hands_Variance_Fields>;
 };
 
 
@@ -741,6 +798,12 @@ export type Hands_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** aggregate avg on columns */
+export type Hands_Avg_Fields = {
+  __typename?: 'hands_avg_fields';
+  es?: Maybe<Scalars['Float']>;
+};
+
 /** Boolean expression to filter rows from the table "hands". All fields are combined with a logical 'AND'. */
 export type Hands_Bool_Exp = {
   _and?: InputMaybe<Array<Hands_Bool_Exp>>;
@@ -748,12 +811,325 @@ export type Hands_Bool_Exp = {
   _or?: InputMaybe<Array<Hands_Bool_Exp>>;
   content?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  es?: InputMaybe<Float_Comparison_Exp>;
+  hands_cards?: InputMaybe<Hands_Cards_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   labels?: InputMaybe<Labels_Bool_Exp>;
+  pots?: InputMaybe<Pots_Bool_Exp>;
   street_infos?: InputMaybe<Street_Info_Bool_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   user_id?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** columns and relationships of "hands_cards" */
+export type Hands_Cards = {
+  __typename?: 'hands_cards';
+  /** An object relationship */
+  card: Cards;
+  card_id: Scalars['uuid'];
+  /** An object relationship */
+  hand: Hands;
+  hand_id: Scalars['uuid'];
+  id: Scalars['uuid'];
+  order: Scalars['Int'];
+};
+
+/** aggregated selection of "hands_cards" */
+export type Hands_Cards_Aggregate = {
+  __typename?: 'hands_cards_aggregate';
+  aggregate?: Maybe<Hands_Cards_Aggregate_Fields>;
+  nodes: Array<Hands_Cards>;
+};
+
+/** aggregate fields of "hands_cards" */
+export type Hands_Cards_Aggregate_Fields = {
+  __typename?: 'hands_cards_aggregate_fields';
+  avg?: Maybe<Hands_Cards_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Hands_Cards_Max_Fields>;
+  min?: Maybe<Hands_Cards_Min_Fields>;
+  stddev?: Maybe<Hands_Cards_Stddev_Fields>;
+  stddev_pop?: Maybe<Hands_Cards_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Hands_Cards_Stddev_Samp_Fields>;
+  sum?: Maybe<Hands_Cards_Sum_Fields>;
+  var_pop?: Maybe<Hands_Cards_Var_Pop_Fields>;
+  var_samp?: Maybe<Hands_Cards_Var_Samp_Fields>;
+  variance?: Maybe<Hands_Cards_Variance_Fields>;
+};
+
+
+/** aggregate fields of "hands_cards" */
+export type Hands_Cards_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "hands_cards" */
+export type Hands_Cards_Aggregate_Order_By = {
+  avg?: InputMaybe<Hands_Cards_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Hands_Cards_Max_Order_By>;
+  min?: InputMaybe<Hands_Cards_Min_Order_By>;
+  stddev?: InputMaybe<Hands_Cards_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Hands_Cards_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Hands_Cards_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Hands_Cards_Sum_Order_By>;
+  var_pop?: InputMaybe<Hands_Cards_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Hands_Cards_Var_Samp_Order_By>;
+  variance?: InputMaybe<Hands_Cards_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "hands_cards" */
+export type Hands_Cards_Arr_Rel_Insert_Input = {
+  data: Array<Hands_Cards_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Hands_Cards_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Hands_Cards_Avg_Fields = {
+  __typename?: 'hands_cards_avg_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "hands_cards" */
+export type Hands_Cards_Avg_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "hands_cards". All fields are combined with a logical 'AND'. */
+export type Hands_Cards_Bool_Exp = {
+  _and?: InputMaybe<Array<Hands_Cards_Bool_Exp>>;
+  _not?: InputMaybe<Hands_Cards_Bool_Exp>;
+  _or?: InputMaybe<Array<Hands_Cards_Bool_Exp>>;
+  card?: InputMaybe<Cards_Bool_Exp>;
+  card_id?: InputMaybe<Uuid_Comparison_Exp>;
+  hand?: InputMaybe<Hands_Bool_Exp>;
+  hand_id?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  order?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "hands_cards" */
+export enum Hands_Cards_Constraint {
+  /** unique or primary key constraint on columns "card_id", "hand_id", "order" */
+  HandsCardsHandIdCardIdOrderKey = 'hands_cards_hand_id_card_id_order_key',
+  /** unique or primary key constraint on columns "id" */
+  HandsCardsPkey = 'hands_cards_pkey'
+}
+
+/** input type for incrementing numeric columns in table "hands_cards" */
+export type Hands_Cards_Inc_Input = {
+  order?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "hands_cards" */
+export type Hands_Cards_Insert_Input = {
+  card?: InputMaybe<Cards_Obj_Rel_Insert_Input>;
+  card_id?: InputMaybe<Scalars['uuid']>;
+  hand?: InputMaybe<Hands_Obj_Rel_Insert_Input>;
+  hand_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  order?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Hands_Cards_Max_Fields = {
+  __typename?: 'hands_cards_max_fields';
+  card_id?: Maybe<Scalars['uuid']>;
+  hand_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  order?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "hands_cards" */
+export type Hands_Cards_Max_Order_By = {
+  card_id?: InputMaybe<Order_By>;
+  hand_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Hands_Cards_Min_Fields = {
+  __typename?: 'hands_cards_min_fields';
+  card_id?: Maybe<Scalars['uuid']>;
+  hand_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  order?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "hands_cards" */
+export type Hands_Cards_Min_Order_By = {
+  card_id?: InputMaybe<Order_By>;
+  hand_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "hands_cards" */
+export type Hands_Cards_Mutation_Response = {
+  __typename?: 'hands_cards_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Hands_Cards>;
+};
+
+/** on_conflict condition type for table "hands_cards" */
+export type Hands_Cards_On_Conflict = {
+  constraint: Hands_Cards_Constraint;
+  update_columns?: Array<Hands_Cards_Update_Column>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "hands_cards". */
+export type Hands_Cards_Order_By = {
+  card?: InputMaybe<Cards_Order_By>;
+  card_id?: InputMaybe<Order_By>;
+  hand?: InputMaybe<Hands_Order_By>;
+  hand_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  order?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: hands_cards */
+export type Hands_Cards_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "hands_cards" */
+export enum Hands_Cards_Select_Column {
+  /** column name */
+  CardId = 'card_id',
+  /** column name */
+  HandId = 'hand_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Order = 'order'
+}
+
+/** input type for updating data in table "hands_cards" */
+export type Hands_Cards_Set_Input = {
+  card_id?: InputMaybe<Scalars['uuid']>;
+  hand_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  order?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Hands_Cards_Stddev_Fields = {
+  __typename?: 'hands_cards_stddev_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "hands_cards" */
+export type Hands_Cards_Stddev_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Hands_Cards_Stddev_Pop_Fields = {
+  __typename?: 'hands_cards_stddev_pop_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "hands_cards" */
+export type Hands_Cards_Stddev_Pop_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Hands_Cards_Stddev_Samp_Fields = {
+  __typename?: 'hands_cards_stddev_samp_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "hands_cards" */
+export type Hands_Cards_Stddev_Samp_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "hands_cards" */
+export type Hands_Cards_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Hands_Cards_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Hands_Cards_Stream_Cursor_Value_Input = {
+  card_id?: InputMaybe<Scalars['uuid']>;
+  hand_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  order?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate sum on columns */
+export type Hands_Cards_Sum_Fields = {
+  __typename?: 'hands_cards_sum_fields';
+  order?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "hands_cards" */
+export type Hands_Cards_Sum_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** update columns of table "hands_cards" */
+export enum Hands_Cards_Update_Column {
+  /** column name */
+  CardId = 'card_id',
+  /** column name */
+  HandId = 'hand_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Order = 'order'
+}
+
+export type Hands_Cards_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Hands_Cards_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Hands_Cards_Set_Input>;
+  where: Hands_Cards_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Hands_Cards_Var_Pop_Fields = {
+  __typename?: 'hands_cards_var_pop_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "hands_cards" */
+export type Hands_Cards_Var_Pop_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Hands_Cards_Var_Samp_Fields = {
+  __typename?: 'hands_cards_var_samp_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "hands_cards" */
+export type Hands_Cards_Var_Samp_Order_By = {
+  order?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Hands_Cards_Variance_Fields = {
+  __typename?: 'hands_cards_variance_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "hands_cards" */
+export type Hands_Cards_Variance_Order_By = {
+  order?: InputMaybe<Order_By>;
 };
 
 /** unique or primary key constraints on table "hands" */
@@ -762,12 +1138,20 @@ export enum Hands_Constraint {
   HandsPkey = 'hands_pkey'
 }
 
+/** input type for incrementing numeric columns in table "hands" */
+export type Hands_Inc_Input = {
+  es?: InputMaybe<Scalars['Float']>;
+};
+
 /** input type for inserting data into table "hands" */
 export type Hands_Insert_Input = {
   content?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  es?: InputMaybe<Scalars['Float']>;
+  hands_cards?: InputMaybe<Hands_Cards_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']>;
   labels?: InputMaybe<Labels_Arr_Rel_Insert_Input>;
+  pots?: InputMaybe<Pots_Arr_Rel_Insert_Input>;
   street_infos?: InputMaybe<Street_Info_Arr_Rel_Insert_Input>;
   title?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -779,6 +1163,7 @@ export type Hands_Max_Fields = {
   __typename?: 'hands_max_fields';
   content?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  es?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['uuid']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -790,6 +1175,7 @@ export type Hands_Min_Fields = {
   __typename?: 'hands_min_fields';
   content?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  es?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['uuid']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -823,8 +1209,11 @@ export type Hands_On_Conflict = {
 export type Hands_Order_By = {
   content?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  es?: InputMaybe<Order_By>;
+  hands_cards_aggregate?: InputMaybe<Hands_Cards_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
   labels_aggregate?: InputMaybe<Labels_Aggregate_Order_By>;
+  pots_aggregate?: InputMaybe<Pots_Aggregate_Order_By>;
   street_infos_aggregate?: InputMaybe<Street_Info_Aggregate_Order_By>;
   title?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -843,6 +1232,8 @@ export enum Hands_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Es = 'es',
+  /** column name */
   Id = 'id',
   /** column name */
   Title = 'title',
@@ -856,10 +1247,29 @@ export enum Hands_Select_Column {
 export type Hands_Set_Input = {
   content?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  es?: InputMaybe<Scalars['Float']>;
   id?: InputMaybe<Scalars['uuid']>;
   title?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   user_id?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Hands_Stddev_Fields = {
+  __typename?: 'hands_stddev_fields';
+  es?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Hands_Stddev_Pop_Fields = {
+  __typename?: 'hands_stddev_pop_fields';
+  es?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Hands_Stddev_Samp_Fields = {
+  __typename?: 'hands_stddev_samp_fields';
+  es?: Maybe<Scalars['Float']>;
 };
 
 /** Streaming cursor of the table "hands" */
@@ -874,10 +1284,17 @@ export type Hands_Stream_Cursor_Input = {
 export type Hands_Stream_Cursor_Value_Input = {
   content?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  es?: InputMaybe<Scalars['Float']>;
   id?: InputMaybe<Scalars['uuid']>;
   title?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   user_id?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate sum on columns */
+export type Hands_Sum_Fields = {
+  __typename?: 'hands_sum_fields';
+  es?: Maybe<Scalars['Float']>;
 };
 
 /** update columns of table "hands" */
@@ -886,6 +1303,8 @@ export enum Hands_Update_Column {
   Content = 'content',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  Es = 'es',
   /** column name */
   Id = 'id',
   /** column name */
@@ -897,9 +1316,29 @@ export enum Hands_Update_Column {
 }
 
 export type Hands_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Hands_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Hands_Set_Input>;
   where: Hands_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Hands_Var_Pop_Fields = {
+  __typename?: 'hands_var_pop_fields';
+  es?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Hands_Var_Samp_Fields = {
+  __typename?: 'hands_var_samp_fields';
+  es?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Hands_Variance_Fields = {
+  __typename?: 'hands_variance_fields';
+  es?: Maybe<Scalars['Float']>;
 };
 
 /** columns and relationships of "labels" */
@@ -1109,18 +1548,22 @@ export type Mutation_Root = {
   delete_hands?: Maybe<Hands_Mutation_Response>;
   /** delete single row from the table: "hands" */
   delete_hands_by_pk?: Maybe<Hands>;
+  /** delete data from the table: "hands_cards" */
+  delete_hands_cards?: Maybe<Hands_Cards_Mutation_Response>;
+  /** delete single row from the table: "hands_cards" */
+  delete_hands_cards_by_pk?: Maybe<Hands_Cards>;
   /** delete data from the table: "labels" */
   delete_labels?: Maybe<Labels_Mutation_Response>;
   /** delete single row from the table: "labels" */
   delete_labels_by_pk?: Maybe<Labels>;
+  /** delete data from the table: "pots" */
+  delete_pots?: Maybe<Pots_Mutation_Response>;
+  /** delete single row from the table: "pots" */
+  delete_pots_by_pk?: Maybe<Pots>;
   /** delete data from the table: "street_info" */
   delete_street_info?: Maybe<Street_Info_Mutation_Response>;
   /** delete single row from the table: "street_info" */
   delete_street_info_by_pk?: Maybe<Street_Info>;
-  /** delete data from the table: "street_info_cards" */
-  delete_street_info_cards?: Maybe<Street_Info_Cards_Mutation_Response>;
-  /** delete single row from the table: "street_info_cards" */
-  delete_street_info_cards_by_pk?: Maybe<Street_Info_Cards>;
   /** insert data into the table: "actions" */
   insert_actions?: Maybe<Actions_Mutation_Response>;
   /** insert a single row into the table: "actions" */
@@ -1131,18 +1574,22 @@ export type Mutation_Root = {
   insert_cards_one?: Maybe<Cards>;
   /** insert data into the table: "hands" */
   insert_hands?: Maybe<Hands_Mutation_Response>;
+  /** insert data into the table: "hands_cards" */
+  insert_hands_cards?: Maybe<Hands_Cards_Mutation_Response>;
+  /** insert a single row into the table: "hands_cards" */
+  insert_hands_cards_one?: Maybe<Hands_Cards>;
   /** insert a single row into the table: "hands" */
   insert_hands_one?: Maybe<Hands>;
   /** insert data into the table: "labels" */
   insert_labels?: Maybe<Labels_Mutation_Response>;
   /** insert a single row into the table: "labels" */
   insert_labels_one?: Maybe<Labels>;
+  /** insert data into the table: "pots" */
+  insert_pots?: Maybe<Pots_Mutation_Response>;
+  /** insert a single row into the table: "pots" */
+  insert_pots_one?: Maybe<Pots>;
   /** insert data into the table: "street_info" */
   insert_street_info?: Maybe<Street_Info_Mutation_Response>;
-  /** insert data into the table: "street_info_cards" */
-  insert_street_info_cards?: Maybe<Street_Info_Cards_Mutation_Response>;
-  /** insert a single row into the table: "street_info_cards" */
-  insert_street_info_cards_one?: Maybe<Street_Info_Cards>;
   /** insert a single row into the table: "street_info" */
   insert_street_info_one?: Maybe<Street_Info>;
   /** update data of the table: "actions" */
@@ -1161,6 +1608,12 @@ export type Mutation_Root = {
   update_hands?: Maybe<Hands_Mutation_Response>;
   /** update single row of the table: "hands" */
   update_hands_by_pk?: Maybe<Hands>;
+  /** update data of the table: "hands_cards" */
+  update_hands_cards?: Maybe<Hands_Cards_Mutation_Response>;
+  /** update single row of the table: "hands_cards" */
+  update_hands_cards_by_pk?: Maybe<Hands_Cards>;
+  /** update multiples rows of table: "hands_cards" */
+  update_hands_cards_many?: Maybe<Array<Maybe<Hands_Cards_Mutation_Response>>>;
   /** update multiples rows of table: "hands" */
   update_hands_many?: Maybe<Array<Maybe<Hands_Mutation_Response>>>;
   /** update data of the table: "labels" */
@@ -1169,16 +1622,16 @@ export type Mutation_Root = {
   update_labels_by_pk?: Maybe<Labels>;
   /** update multiples rows of table: "labels" */
   update_labels_many?: Maybe<Array<Maybe<Labels_Mutation_Response>>>;
+  /** update data of the table: "pots" */
+  update_pots?: Maybe<Pots_Mutation_Response>;
+  /** update single row of the table: "pots" */
+  update_pots_by_pk?: Maybe<Pots>;
+  /** update multiples rows of table: "pots" */
+  update_pots_many?: Maybe<Array<Maybe<Pots_Mutation_Response>>>;
   /** update data of the table: "street_info" */
   update_street_info?: Maybe<Street_Info_Mutation_Response>;
   /** update single row of the table: "street_info" */
   update_street_info_by_pk?: Maybe<Street_Info>;
-  /** update data of the table: "street_info_cards" */
-  update_street_info_cards?: Maybe<Street_Info_Cards_Mutation_Response>;
-  /** update single row of the table: "street_info_cards" */
-  update_street_info_cards_by_pk?: Maybe<Street_Info_Cards>;
-  /** update multiples rows of table: "street_info_cards" */
-  update_street_info_cards_many?: Maybe<Array<Maybe<Street_Info_Cards_Mutation_Response>>>;
   /** update multiples rows of table: "street_info" */
   update_street_info_many?: Maybe<Array<Maybe<Street_Info_Mutation_Response>>>;
 };
@@ -1221,6 +1674,18 @@ export type Mutation_RootDelete_Hands_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Hands_CardsArgs = {
+  where: Hands_Cards_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Hands_Cards_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_LabelsArgs = {
   where: Labels_Bool_Exp;
 };
@@ -1233,6 +1698,18 @@ export type Mutation_RootDelete_Labels_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_PotsArgs = {
+  where: Pots_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pots_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Street_InfoArgs = {
   where: Street_Info_Bool_Exp;
 };
@@ -1240,18 +1717,6 @@ export type Mutation_RootDelete_Street_InfoArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Street_Info_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Street_Info_CardsArgs = {
-  where: Street_Info_Cards_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Street_Info_Cards_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -1292,6 +1757,20 @@ export type Mutation_RootInsert_HandsArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Hands_CardsArgs = {
+  objects: Array<Hands_Cards_Insert_Input>;
+  on_conflict?: InputMaybe<Hands_Cards_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Hands_Cards_OneArgs = {
+  object: Hands_Cards_Insert_Input;
+  on_conflict?: InputMaybe<Hands_Cards_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Hands_OneArgs = {
   object: Hands_Insert_Input;
   on_conflict?: InputMaybe<Hands_On_Conflict>;
@@ -1313,23 +1792,23 @@ export type Mutation_RootInsert_Labels_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_PotsArgs = {
+  objects: Array<Pots_Insert_Input>;
+  on_conflict?: InputMaybe<Pots_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pots_OneArgs = {
+  object: Pots_Insert_Input;
+  on_conflict?: InputMaybe<Pots_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Street_InfoArgs = {
   objects: Array<Street_Info_Insert_Input>;
   on_conflict?: InputMaybe<Street_Info_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Street_Info_CardsArgs = {
-  objects: Array<Street_Info_Cards_Insert_Input>;
-  on_conflict?: InputMaybe<Street_Info_Cards_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Street_Info_Cards_OneArgs = {
-  object: Street_Info_Cards_Insert_Input;
-  on_conflict?: InputMaybe<Street_Info_Cards_On_Conflict>;
 };
 
 
@@ -1384,6 +1863,7 @@ export type Mutation_RootUpdate_Cards_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_HandsArgs = {
+  _inc?: InputMaybe<Hands_Inc_Input>;
   _set?: InputMaybe<Hands_Set_Input>;
   where: Hands_Bool_Exp;
 };
@@ -1391,8 +1871,31 @@ export type Mutation_RootUpdate_HandsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Hands_By_PkArgs = {
+  _inc?: InputMaybe<Hands_Inc_Input>;
   _set?: InputMaybe<Hands_Set_Input>;
   pk_columns: Hands_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Hands_CardsArgs = {
+  _inc?: InputMaybe<Hands_Cards_Inc_Input>;
+  _set?: InputMaybe<Hands_Cards_Set_Input>;
+  where: Hands_Cards_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Hands_Cards_By_PkArgs = {
+  _inc?: InputMaybe<Hands_Cards_Inc_Input>;
+  _set?: InputMaybe<Hands_Cards_Set_Input>;
+  pk_columns: Hands_Cards_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Hands_Cards_ManyArgs = {
+  updates: Array<Hands_Cards_Updates>;
 };
 
 
@@ -1423,6 +1926,28 @@ export type Mutation_RootUpdate_Labels_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_PotsArgs = {
+  _inc?: InputMaybe<Pots_Inc_Input>;
+  _set?: InputMaybe<Pots_Set_Input>;
+  where: Pots_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pots_By_PkArgs = {
+  _inc?: InputMaybe<Pots_Inc_Input>;
+  _set?: InputMaybe<Pots_Set_Input>;
+  pk_columns: Pots_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pots_ManyArgs = {
+  updates: Array<Pots_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Street_InfoArgs = {
   _inc?: InputMaybe<Street_Info_Inc_Input>;
   _set?: InputMaybe<Street_Info_Set_Input>;
@@ -1435,26 +1960,6 @@ export type Mutation_RootUpdate_Street_Info_By_PkArgs = {
   _inc?: InputMaybe<Street_Info_Inc_Input>;
   _set?: InputMaybe<Street_Info_Set_Input>;
   pk_columns: Street_Info_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Street_Info_CardsArgs = {
-  _set?: InputMaybe<Street_Info_Cards_Set_Input>;
-  where: Street_Info_Cards_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Street_Info_Cards_By_PkArgs = {
-  _set?: InputMaybe<Street_Info_Cards_Set_Input>;
-  pk_columns: Street_Info_Cards_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Street_Info_Cards_ManyArgs = {
-  updates: Array<Street_Info_Cards_Updates>;
 };
 
 
@@ -1479,6 +1984,328 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
+/** columns and relationships of "pots" */
+export type Pots = {
+  __typename?: 'pots';
+  /** An object relationship */
+  hand: Hands;
+  hand_id: Scalars['uuid'];
+  id: Scalars['uuid'];
+  size: Scalars['Float'];
+  street: Scalars['Int'];
+};
+
+/** aggregated selection of "pots" */
+export type Pots_Aggregate = {
+  __typename?: 'pots_aggregate';
+  aggregate?: Maybe<Pots_Aggregate_Fields>;
+  nodes: Array<Pots>;
+};
+
+/** aggregate fields of "pots" */
+export type Pots_Aggregate_Fields = {
+  __typename?: 'pots_aggregate_fields';
+  avg?: Maybe<Pots_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pots_Max_Fields>;
+  min?: Maybe<Pots_Min_Fields>;
+  stddev?: Maybe<Pots_Stddev_Fields>;
+  stddev_pop?: Maybe<Pots_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pots_Stddev_Samp_Fields>;
+  sum?: Maybe<Pots_Sum_Fields>;
+  var_pop?: Maybe<Pots_Var_Pop_Fields>;
+  var_samp?: Maybe<Pots_Var_Samp_Fields>;
+  variance?: Maybe<Pots_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pots" */
+export type Pots_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Pots_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "pots" */
+export type Pots_Aggregate_Order_By = {
+  avg?: InputMaybe<Pots_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Pots_Max_Order_By>;
+  min?: InputMaybe<Pots_Min_Order_By>;
+  stddev?: InputMaybe<Pots_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Pots_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Pots_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Pots_Sum_Order_By>;
+  var_pop?: InputMaybe<Pots_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Pots_Var_Samp_Order_By>;
+  variance?: InputMaybe<Pots_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "pots" */
+export type Pots_Arr_Rel_Insert_Input = {
+  data: Array<Pots_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Pots_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Pots_Avg_Fields = {
+  __typename?: 'pots_avg_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "pots" */
+export type Pots_Avg_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "pots". All fields are combined with a logical 'AND'. */
+export type Pots_Bool_Exp = {
+  _and?: InputMaybe<Array<Pots_Bool_Exp>>;
+  _not?: InputMaybe<Pots_Bool_Exp>;
+  _or?: InputMaybe<Array<Pots_Bool_Exp>>;
+  hand?: InputMaybe<Hands_Bool_Exp>;
+  hand_id?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  size?: InputMaybe<Float_Comparison_Exp>;
+  street?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pots" */
+export enum Pots_Constraint {
+  /** unique or primary key constraint on columns "hand_id", "street" */
+  PotsHandIdStreetKey = 'pots_hand_id_street_key',
+  /** unique or primary key constraint on columns "id" */
+  PotsPkey = 'pots_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pots" */
+export type Pots_Inc_Input = {
+  size?: InputMaybe<Scalars['Float']>;
+  street?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pots" */
+export type Pots_Insert_Input = {
+  hand?: InputMaybe<Hands_Obj_Rel_Insert_Input>;
+  hand_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  size?: InputMaybe<Scalars['Float']>;
+  street?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Pots_Max_Fields = {
+  __typename?: 'pots_max_fields';
+  hand_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "pots" */
+export type Pots_Max_Order_By = {
+  hand_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Pots_Min_Fields = {
+  __typename?: 'pots_min_fields';
+  hand_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "pots" */
+export type Pots_Min_Order_By = {
+  hand_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "pots" */
+export type Pots_Mutation_Response = {
+  __typename?: 'pots_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pots>;
+};
+
+/** on_conflict condition type for table "pots" */
+export type Pots_On_Conflict = {
+  constraint: Pots_Constraint;
+  update_columns?: Array<Pots_Update_Column>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pots". */
+export type Pots_Order_By = {
+  hand?: InputMaybe<Hands_Order_By>;
+  hand_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: pots */
+export type Pots_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "pots" */
+export enum Pots_Select_Column {
+  /** column name */
+  HandId = 'hand_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Size = 'size',
+  /** column name */
+  Street = 'street'
+}
+
+/** input type for updating data in table "pots" */
+export type Pots_Set_Input = {
+  hand_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  size?: InputMaybe<Scalars['Float']>;
+  street?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Pots_Stddev_Fields = {
+  __typename?: 'pots_stddev_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "pots" */
+export type Pots_Stddev_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pots_Stddev_Pop_Fields = {
+  __typename?: 'pots_stddev_pop_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "pots" */
+export type Pots_Stddev_Pop_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pots_Stddev_Samp_Fields = {
+  __typename?: 'pots_stddev_samp_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "pots" */
+export type Pots_Stddev_Samp_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "pots" */
+export type Pots_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pots_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pots_Stream_Cursor_Value_Input = {
+  hand_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  size?: InputMaybe<Scalars['Float']>;
+  street?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate sum on columns */
+export type Pots_Sum_Fields = {
+  __typename?: 'pots_sum_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "pots" */
+export type Pots_Sum_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** update columns of table "pots" */
+export enum Pots_Update_Column {
+  /** column name */
+  HandId = 'hand_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Size = 'size',
+  /** column name */
+  Street = 'street'
+}
+
+export type Pots_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Pots_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Pots_Set_Input>;
+  where: Pots_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Pots_Var_Pop_Fields = {
+  __typename?: 'pots_var_pop_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "pots" */
+export type Pots_Var_Pop_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Pots_Var_Samp_Fields = {
+  __typename?: 'pots_var_samp_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "pots" */
+export type Pots_Var_Samp_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Pots_Variance_Fields = {
+  __typename?: 'pots_variance_fields';
+  size?: Maybe<Scalars['Float']>;
+  street?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "pots" */
+export type Pots_Variance_Order_By = {
+  size?: InputMaybe<Order_By>;
+  street?: InputMaybe<Order_By>;
+};
+
 export type Query_Root = {
   __typename?: 'query_root';
   /** An array relationship */
@@ -1500,23 +2327,29 @@ export type Query_Root = {
   /** fetch data from the table: "hands" using primary key columns */
   hands_by_pk?: Maybe<Hands>;
   /** An array relationship */
+  hands_cards: Array<Hands_Cards>;
+  /** An aggregate relationship */
+  hands_cards_aggregate: Hands_Cards_Aggregate;
+  /** fetch data from the table: "hands_cards" using primary key columns */
+  hands_cards_by_pk?: Maybe<Hands_Cards>;
+  /** An array relationship */
   labels: Array<Labels>;
   /** An aggregate relationship */
   labels_aggregate: Labels_Aggregate;
   /** fetch data from the table: "labels" using primary key columns */
   labels_by_pk?: Maybe<Labels>;
+  /** An array relationship */
+  pots: Array<Pots>;
+  /** An aggregate relationship */
+  pots_aggregate: Pots_Aggregate;
+  /** fetch data from the table: "pots" using primary key columns */
+  pots_by_pk?: Maybe<Pots>;
   /** fetch data from the table: "street_info" */
   street_info: Array<Street_Info>;
   /** fetch aggregated fields from the table: "street_info" */
   street_info_aggregate: Street_Info_Aggregate;
   /** fetch data from the table: "street_info" using primary key columns */
   street_info_by_pk?: Maybe<Street_Info>;
-  /** An array relationship */
-  street_info_cards: Array<Street_Info_Cards>;
-  /** An aggregate relationship */
-  street_info_cards_aggregate: Street_Info_Cards_Aggregate;
-  /** fetch data from the table: "street_info_cards" using primary key columns */
-  street_info_cards_by_pk?: Maybe<Street_Info_Cards>;
 };
 
 
@@ -1589,6 +2422,29 @@ export type Query_RootHands_By_PkArgs = {
 };
 
 
+export type Query_RootHands_CardsArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+
+export type Query_RootHands_Cards_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+
+export type Query_RootHands_Cards_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type Query_RootLabelsArgs = {
   distinct_on?: InputMaybe<Array<Labels_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1608,6 +2464,29 @@ export type Query_RootLabels_AggregateArgs = {
 
 
 export type Query_RootLabels_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootPotsArgs = {
+  distinct_on?: InputMaybe<Array<Pots_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Pots_Order_By>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+
+export type Query_RootPots_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pots_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Pots_Order_By>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+
+export type Query_RootPots_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -1634,29 +2513,6 @@ export type Query_RootStreet_Info_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
-
-export type Query_RootStreet_Info_CardsArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-};
-
-
-export type Query_RootStreet_Info_Cards_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-};
-
-
-export type Query_RootStreet_Info_Cards_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
 /** columns and relationships of "street_info" */
 export type Street_Info = {
   __typename?: 'street_info';
@@ -1665,17 +2521,11 @@ export type Street_Info = {
   /** An aggregate relationship */
   actions_aggregate: Actions_Aggregate;
   created_at: Scalars['timestamptz'];
-  es?: Maybe<Scalars['Float']>;
   /** An object relationship */
   hand: Hands;
   hand_id: Scalars['uuid'];
   id: Scalars['uuid'];
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Int']>;
-  /** An array relationship */
-  street_info_cards: Array<Street_Info_Cards>;
-  /** An aggregate relationship */
-  street_info_cards_aggregate: Street_Info_Cards_Aggregate;
   updated_at: Scalars['timestamptz'];
 };
 
@@ -1697,26 +2547,6 @@ export type Street_InfoActions_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Actions_Order_By>>;
   where?: InputMaybe<Actions_Bool_Exp>;
-};
-
-
-/** columns and relationships of "street_info" */
-export type Street_InfoStreet_Info_CardsArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-};
-
-
-/** columns and relationships of "street_info" */
-export type Street_InfoStreet_Info_Cards_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
 };
 
 /** aggregated selection of "street_info" */
@@ -1774,15 +2604,11 @@ export type Street_Info_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Street_Info_Avg_Fields = {
   __typename?: 'street_info_avg_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "street_info" */
 export type Street_Info_Avg_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
@@ -1793,197 +2619,11 @@ export type Street_Info_Bool_Exp = {
   _or?: InputMaybe<Array<Street_Info_Bool_Exp>>;
   actions?: InputMaybe<Actions_Bool_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  es?: InputMaybe<Float_Comparison_Exp>;
   hand?: InputMaybe<Hands_Bool_Exp>;
   hand_id?: InputMaybe<Uuid_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  stack?: InputMaybe<Float_Comparison_Exp>;
   street?: InputMaybe<Int_Comparison_Exp>;
-  street_info_cards?: InputMaybe<Street_Info_Cards_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
-
-/** columns and relationships of "street_info_cards" */
-export type Street_Info_Cards = {
-  __typename?: 'street_info_cards';
-  /** An object relationship */
-  card: Cards;
-  card_id: Scalars['uuid'];
-  id: Scalars['uuid'];
-  /** An object relationship */
-  street_info: Street_Info;
-  street_info_id: Scalars['uuid'];
-};
-
-/** aggregated selection of "street_info_cards" */
-export type Street_Info_Cards_Aggregate = {
-  __typename?: 'street_info_cards_aggregate';
-  aggregate?: Maybe<Street_Info_Cards_Aggregate_Fields>;
-  nodes: Array<Street_Info_Cards>;
-};
-
-/** aggregate fields of "street_info_cards" */
-export type Street_Info_Cards_Aggregate_Fields = {
-  __typename?: 'street_info_cards_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<Street_Info_Cards_Max_Fields>;
-  min?: Maybe<Street_Info_Cards_Min_Fields>;
-};
-
-
-/** aggregate fields of "street_info_cards" */
-export type Street_Info_Cards_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "street_info_cards" */
-export type Street_Info_Cards_Aggregate_Order_By = {
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Street_Info_Cards_Max_Order_By>;
-  min?: InputMaybe<Street_Info_Cards_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "street_info_cards" */
-export type Street_Info_Cards_Arr_Rel_Insert_Input = {
-  data: Array<Street_Info_Cards_Insert_Input>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<Street_Info_Cards_On_Conflict>;
-};
-
-/** Boolean expression to filter rows from the table "street_info_cards". All fields are combined with a logical 'AND'. */
-export type Street_Info_Cards_Bool_Exp = {
-  _and?: InputMaybe<Array<Street_Info_Cards_Bool_Exp>>;
-  _not?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-  _or?: InputMaybe<Array<Street_Info_Cards_Bool_Exp>>;
-  card?: InputMaybe<Cards_Bool_Exp>;
-  card_id?: InputMaybe<Uuid_Comparison_Exp>;
-  id?: InputMaybe<Uuid_Comparison_Exp>;
-  street_info?: InputMaybe<Street_Info_Bool_Exp>;
-  street_info_id?: InputMaybe<Uuid_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "street_info_cards" */
-export enum Street_Info_Cards_Constraint {
-  /** unique or primary key constraint on columns "id" */
-  StreetInfoCardsPkey = 'street_info_cards_pkey'
-}
-
-/** input type for inserting data into table "street_info_cards" */
-export type Street_Info_Cards_Insert_Input = {
-  card?: InputMaybe<Cards_Obj_Rel_Insert_Input>;
-  card_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  street_info?: InputMaybe<Street_Info_Obj_Rel_Insert_Input>;
-  street_info_id?: InputMaybe<Scalars['uuid']>;
-};
-
-/** aggregate max on columns */
-export type Street_Info_Cards_Max_Fields = {
-  __typename?: 'street_info_cards_max_fields';
-  card_id?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  street_info_id?: Maybe<Scalars['uuid']>;
-};
-
-/** order by max() on columns of table "street_info_cards" */
-export type Street_Info_Cards_Max_Order_By = {
-  card_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  street_info_id?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Street_Info_Cards_Min_Fields = {
-  __typename?: 'street_info_cards_min_fields';
-  card_id?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  street_info_id?: Maybe<Scalars['uuid']>;
-};
-
-/** order by min() on columns of table "street_info_cards" */
-export type Street_Info_Cards_Min_Order_By = {
-  card_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  street_info_id?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "street_info_cards" */
-export type Street_Info_Cards_Mutation_Response = {
-  __typename?: 'street_info_cards_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Street_Info_Cards>;
-};
-
-/** on_conflict condition type for table "street_info_cards" */
-export type Street_Info_Cards_On_Conflict = {
-  constraint: Street_Info_Cards_Constraint;
-  update_columns?: Array<Street_Info_Cards_Update_Column>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "street_info_cards". */
-export type Street_Info_Cards_Order_By = {
-  card?: InputMaybe<Cards_Order_By>;
-  card_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  street_info?: InputMaybe<Street_Info_Order_By>;
-  street_info_id?: InputMaybe<Order_By>;
-};
-
-/** primary key columns input for table: street_info_cards */
-export type Street_Info_Cards_Pk_Columns_Input = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "street_info_cards" */
-export enum Street_Info_Cards_Select_Column {
-  /** column name */
-  CardId = 'card_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  StreetInfoId = 'street_info_id'
-}
-
-/** input type for updating data in table "street_info_cards" */
-export type Street_Info_Cards_Set_Input = {
-  card_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  street_info_id?: InputMaybe<Scalars['uuid']>;
-};
-
-/** Streaming cursor of the table "street_info_cards" */
-export type Street_Info_Cards_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Street_Info_Cards_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Street_Info_Cards_Stream_Cursor_Value_Input = {
-  card_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  street_info_id?: InputMaybe<Scalars['uuid']>;
-};
-
-/** update columns of table "street_info_cards" */
-export enum Street_Info_Cards_Update_Column {
-  /** column name */
-  CardId = 'card_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  StreetInfoId = 'street_info_id'
-}
-
-export type Street_Info_Cards_Updates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Street_Info_Cards_Set_Input>;
-  where: Street_Info_Cards_Bool_Exp;
 };
 
 /** unique or primary key constraints on table "street_info" */
@@ -1996,8 +2636,6 @@ export enum Street_Info_Constraint {
 
 /** input type for incrementing numeric columns in table "street_info" */
 export type Street_Info_Inc_Input = {
-  es?: InputMaybe<Scalars['Float']>;
-  stack?: InputMaybe<Scalars['Float']>;
   street?: InputMaybe<Scalars['Int']>;
 };
 
@@ -2005,13 +2643,10 @@ export type Street_Info_Inc_Input = {
 export type Street_Info_Insert_Input = {
   actions?: InputMaybe<Actions_Arr_Rel_Insert_Input>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  es?: InputMaybe<Scalars['Float']>;
   hand?: InputMaybe<Hands_Obj_Rel_Insert_Input>;
   hand_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
-  stack?: InputMaybe<Scalars['Float']>;
   street?: InputMaybe<Scalars['Int']>;
-  street_info_cards?: InputMaybe<Street_Info_Cards_Arr_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
@@ -2019,10 +2654,8 @@ export type Street_Info_Insert_Input = {
 export type Street_Info_Max_Fields = {
   __typename?: 'street_info_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
-  es?: Maybe<Scalars['Float']>;
   hand_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -2030,10 +2663,8 @@ export type Street_Info_Max_Fields = {
 /** order by max() on columns of table "street_info" */
 export type Street_Info_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
-  es?: InputMaybe<Order_By>;
   hand_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -2042,10 +2673,8 @@ export type Street_Info_Max_Order_By = {
 export type Street_Info_Min_Fields = {
   __typename?: 'street_info_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
-  es?: Maybe<Scalars['Float']>;
   hand_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -2053,10 +2682,8 @@ export type Street_Info_Min_Fields = {
 /** order by min() on columns of table "street_info" */
 export type Street_Info_Min_Order_By = {
   created_at?: InputMaybe<Order_By>;
-  es?: InputMaybe<Order_By>;
   hand_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -2088,13 +2715,10 @@ export type Street_Info_On_Conflict = {
 export type Street_Info_Order_By = {
   actions_aggregate?: InputMaybe<Actions_Aggregate_Order_By>;
   created_at?: InputMaybe<Order_By>;
-  es?: InputMaybe<Order_By>;
   hand?: InputMaybe<Hands_Order_By>;
   hand_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
-  street_info_cards_aggregate?: InputMaybe<Street_Info_Cards_Aggregate_Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -2108,13 +2732,9 @@ export enum Street_Info_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Es = 'es',
-  /** column name */
   HandId = 'hand_id',
   /** column name */
   Id = 'id',
-  /** column name */
-  Stack = 'stack',
   /** column name */
   Street = 'street',
   /** column name */
@@ -2124,10 +2744,8 @@ export enum Street_Info_Select_Column {
 /** input type for updating data in table "street_info" */
 export type Street_Info_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  es?: InputMaybe<Scalars['Float']>;
   hand_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
-  stack?: InputMaybe<Scalars['Float']>;
   street?: InputMaybe<Scalars['Int']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
@@ -2135,45 +2753,33 @@ export type Street_Info_Set_Input = {
 /** aggregate stddev on columns */
 export type Street_Info_Stddev_Fields = {
   __typename?: 'street_info_stddev_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "street_info" */
 export type Street_Info_Stddev_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Street_Info_Stddev_Pop_Fields = {
   __typename?: 'street_info_stddev_pop_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "street_info" */
 export type Street_Info_Stddev_Pop_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Street_Info_Stddev_Samp_Fields = {
   __typename?: 'street_info_stddev_samp_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "street_info" */
 export type Street_Info_Stddev_Samp_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
@@ -2188,10 +2794,8 @@ export type Street_Info_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Street_Info_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  es?: InputMaybe<Scalars['Float']>;
   hand_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
-  stack?: InputMaybe<Scalars['Float']>;
   street?: InputMaybe<Scalars['Int']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
@@ -2199,15 +2803,11 @@ export type Street_Info_Stream_Cursor_Value_Input = {
 /** aggregate sum on columns */
 export type Street_Info_Sum_Fields = {
   __typename?: 'street_info_sum_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "street_info" */
 export type Street_Info_Sum_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
@@ -2216,13 +2816,9 @@ export enum Street_Info_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Es = 'es',
-  /** column name */
   HandId = 'hand_id',
   /** column name */
   Id = 'id',
-  /** column name */
-  Stack = 'stack',
   /** column name */
   Street = 'street',
   /** column name */
@@ -2240,45 +2836,33 @@ export type Street_Info_Updates = {
 /** aggregate var_pop on columns */
 export type Street_Info_Var_Pop_Fields = {
   __typename?: 'street_info_var_pop_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "street_info" */
 export type Street_Info_Var_Pop_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Street_Info_Var_Samp_Fields = {
   __typename?: 'street_info_var_samp_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "street_info" */
 export type Street_Info_Var_Samp_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Street_Info_Variance_Fields = {
   __typename?: 'street_info_variance_fields';
-  es?: Maybe<Scalars['Float']>;
-  stack?: Maybe<Scalars['Float']>;
   street?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "street_info" */
 export type Street_Info_Variance_Order_By = {
-  es?: InputMaybe<Order_By>;
-  stack?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
 };
 
@@ -2306,6 +2890,14 @@ export type Subscription_Root = {
   hands_aggregate: Hands_Aggregate;
   /** fetch data from the table: "hands" using primary key columns */
   hands_by_pk?: Maybe<Hands>;
+  /** An array relationship */
+  hands_cards: Array<Hands_Cards>;
+  /** An aggregate relationship */
+  hands_cards_aggregate: Hands_Cards_Aggregate;
+  /** fetch data from the table: "hands_cards" using primary key columns */
+  hands_cards_by_pk?: Maybe<Hands_Cards>;
+  /** fetch data from the table in a streaming manner : "hands_cards" */
+  hands_cards_stream: Array<Hands_Cards>;
   /** fetch data from the table in a streaming manner : "hands" */
   hands_stream: Array<Hands>;
   /** An array relationship */
@@ -2316,20 +2908,20 @@ export type Subscription_Root = {
   labels_by_pk?: Maybe<Labels>;
   /** fetch data from the table in a streaming manner : "labels" */
   labels_stream: Array<Labels>;
+  /** An array relationship */
+  pots: Array<Pots>;
+  /** An aggregate relationship */
+  pots_aggregate: Pots_Aggregate;
+  /** fetch data from the table: "pots" using primary key columns */
+  pots_by_pk?: Maybe<Pots>;
+  /** fetch data from the table in a streaming manner : "pots" */
+  pots_stream: Array<Pots>;
   /** fetch data from the table: "street_info" */
   street_info: Array<Street_Info>;
   /** fetch aggregated fields from the table: "street_info" */
   street_info_aggregate: Street_Info_Aggregate;
   /** fetch data from the table: "street_info" using primary key columns */
   street_info_by_pk?: Maybe<Street_Info>;
-  /** An array relationship */
-  street_info_cards: Array<Street_Info_Cards>;
-  /** An aggregate relationship */
-  street_info_cards_aggregate: Street_Info_Cards_Aggregate;
-  /** fetch data from the table: "street_info_cards" using primary key columns */
-  street_info_cards_by_pk?: Maybe<Street_Info_Cards>;
-  /** fetch data from the table in a streaming manner : "street_info_cards" */
-  street_info_cards_stream: Array<Street_Info_Cards>;
   /** fetch data from the table in a streaming manner : "street_info" */
   street_info_stream: Array<Street_Info>;
 };
@@ -2418,6 +3010,36 @@ export type Subscription_RootHands_By_PkArgs = {
 };
 
 
+export type Subscription_RootHands_CardsArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+
+export type Subscription_RootHands_Cards_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Hands_Cards_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Hands_Cards_Order_By>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+
+export type Subscription_RootHands_Cards_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootHands_Cards_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Hands_Cards_Stream_Cursor_Input>>;
+  where?: InputMaybe<Hands_Cards_Bool_Exp>;
+};
+
+
 export type Subscription_RootHands_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Hands_Stream_Cursor_Input>>;
@@ -2455,6 +3077,36 @@ export type Subscription_RootLabels_StreamArgs = {
 };
 
 
+export type Subscription_RootPotsArgs = {
+  distinct_on?: InputMaybe<Array<Pots_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Pots_Order_By>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+
+export type Subscription_RootPots_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pots_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Pots_Order_By>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+
+export type Subscription_RootPots_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootPots_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Pots_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pots_Bool_Exp>;
+};
+
+
 export type Subscription_RootStreet_InfoArgs = {
   distinct_on?: InputMaybe<Array<Street_Info_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2475,36 +3127,6 @@ export type Subscription_RootStreet_Info_AggregateArgs = {
 
 export type Subscription_RootStreet_Info_By_PkArgs = {
   id: Scalars['uuid'];
-};
-
-
-export type Subscription_RootStreet_Info_CardsArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-};
-
-
-export type Subscription_RootStreet_Info_Cards_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Street_Info_Cards_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Street_Info_Cards_Order_By>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
-};
-
-
-export type Subscription_RootStreet_Info_Cards_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-export type Subscription_RootStreet_Info_Cards_StreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<Street_Info_Cards_Stream_Cursor_Input>>;
-  where?: InputMaybe<Street_Info_Cards_Bool_Exp>;
 };
 
 
@@ -2543,7 +3165,7 @@ export type Uuid_Comparison_Exp = {
 export type GetAllHandsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllHandsQuery = { __typename?: 'query_root', hands: Array<{ __typename?: 'hands', id: any, title: string, content: string, user_id: string, created_at: any, updated_at: any, street_infos: Array<{ __typename?: 'street_info', id: any, hand_id: any, street?: number | null, es?: number | null, stack?: number | null, created_at: any, updated_at: any, actions: Array<{ __typename?: 'actions', id: any, street_info_id: any, position: number, move: string, size?: number | null, order: number, created_at: any, updated_at: any }>, street_info_cards: Array<{ __typename?: 'street_info_cards', card: { __typename?: 'cards', id: any, mark: string, num: string } }> }> }> };
+export type GetAllHandsQuery = { __typename?: 'query_root', hands: Array<{ __typename?: 'hands', id: any, title: string, content: string, es: number, user_id: string, created_at: any, updated_at: any, street_infos: Array<{ __typename?: 'street_info', id: any, hand_id: any, street?: number | null, created_at: any, updated_at: any, actions: Array<{ __typename?: 'actions', id: any, street_info_id: any, position: number, move: string, size: number, order: number, created_at: any, updated_at: any }> }>, hands_cards: Array<{ __typename?: 'hands_cards', order: number, card: { __typename?: 'cards', id: any, num: string, mark: string } }>, pots: Array<{ __typename?: 'pots', id: any, hand_id: any, size: number, street: number }> }> };
 
 export type GetAllHandIDsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2555,7 +3177,7 @@ export type GetHandByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetHandByIdQuery = { __typename?: 'query_root', hands_by_pk?: { __typename?: 'hands', id: any, title: string, content: string, user_id: string, created_at: any, updated_at: any, street_infos: Array<{ __typename?: 'street_info', id: any, hand_id: any, street?: number | null, es?: number | null, stack?: number | null, created_at: any, updated_at: any, actions: Array<{ __typename?: 'actions', id: any, street_info_id: any, position: number, move: string, size?: number | null, order: number, created_at: any, updated_at: any }>, street_info_cards: Array<{ __typename?: 'street_info_cards', card: { __typename?: 'cards', id: any, mark: string, num: string } }> }> } | null };
+export type GetHandByIdQuery = { __typename?: 'query_root', hands_by_pk?: { __typename?: 'hands', id: any, title: string, content: string, es: number, user_id: string, created_at: any, updated_at: any, street_infos: Array<{ __typename?: 'street_info', id: any, hand_id: any, street?: number | null, created_at: any, updated_at: any, actions: Array<{ __typename?: 'actions', id: any, street_info_id: any, position: number, move: string, size: number, order: number, created_at: any, updated_at: any }> }>, hands_cards: Array<{ __typename?: 'hands_cards', order: number, card: { __typename?: 'cards', id: any, num: string, mark: string } }>, pots: Array<{ __typename?: 'pots', id: any, hand_id: any, size: number, street: number }> } | null };
 
 
 export const GetAllHandsDocument = gql`
@@ -2564,18 +3186,17 @@ export const GetAllHandsDocument = gql`
     id
     title
     content
+    es
     user_id
     created_at
     updated_at
-    street_infos(order_by: {street: asc}) {
+    street_infos {
       id
       hand_id
       street
-      es
-      stack
       created_at
       updated_at
-      actions(order_by: {order: asc}) {
+      actions {
         id
         street_info_id
         position
@@ -2585,13 +3206,20 @@ export const GetAllHandsDocument = gql`
         created_at
         updated_at
       }
-      street_info_cards {
-        card {
-          id
-          mark
-          num
-        }
+    }
+    hands_cards(order_by: {order: asc}) {
+      card {
+        id
+        num
+        mark
       }
+      order
+    }
+    pots {
+      id
+      hand_id
+      size
+      street
     }
   }
 }
@@ -2663,18 +3291,17 @@ export const GetHandByIdDocument = gql`
     id
     title
     content
+    es
     user_id
     created_at
     updated_at
-    street_infos(order_by: {street: asc}) {
+    street_infos {
       id
       hand_id
       street
-      es
-      stack
       created_at
       updated_at
-      actions(order_by: {order: asc}) {
+      actions {
         id
         street_info_id
         position
@@ -2684,13 +3311,20 @@ export const GetHandByIdDocument = gql`
         created_at
         updated_at
       }
-      street_info_cards {
-        card {
-          id
-          mark
-          num
-        }
+    }
+    hands_cards(order_by: {order: asc}) {
+      card {
+        id
+        num
+        mark
       }
+      order
+    }
+    pots {
+      id
+      hand_id
+      size
+      street
     }
   }
 }

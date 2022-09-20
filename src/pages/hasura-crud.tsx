@@ -1,4 +1,11 @@
-export {}
+import React from 'react'
+
+const HasuraCrud = () => {
+  return <div>crudtest</div>
+}
+
+export default HasuraCrud
+
 // import { FC, FormEvent, useState } from 'react'
 // import Link from 'next/link'
 // import { useMutation, useQuery } from '@apollo/client'

@@ -1,6 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { Button } from '@mantine/core'
+import { Button, Space } from '@mantine/core'
 import { NextLink } from '@mantine/next'
+import DraftJSEditor from 'components/molecule/DraftJSEditor'
+import ActionTable from 'components/organism/ActionTable'
+import { Layout } from 'components/template/Layout'
 import { validate } from 'graphql'
 import { initializeApollo } from 'lib/apolloClient'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -55,12 +58,25 @@ const OneHand: NextPage<Props> = ({ hand }) => {
   }
 
   return (
-    <div>
-      個別ページ
-      <Button component={NextLink} href={`/hands/${hand.id}/edit`}></Button>
-      <p>{hand.title}</p>
-      <p>{hand.content}</p>
-    </div>
+    <Layout title={hand.title}>
+      <div className="flex flex-col">
+        <div className="flex justify-between">
+          <p className="text-3xl">{hand.title}</p>
+          <Button
+            component={NextLink}
+            href={`/hands/${hand.id}/edit`}
+            className="w-28"
+          >
+            編集
+          </Button>
+        </div>
+
+        {/* <ActionTable /> */}
+        <Space h="md" />
+        <DraftJSEditor />
+        <p>{hand.content}</p>
+      </div>
+    </Layout>
   )
 }
 
