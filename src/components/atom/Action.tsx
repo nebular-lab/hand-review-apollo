@@ -13,9 +13,9 @@ import React, { FC, memo, useEffect, useState } from 'react'
 import { ActionInterface } from 'types/localTypes/types'
 
 export interface ActionProps extends ActionInterface {
-  onClickPos: (pos: number, street: number, order: number) => void
-  onClickMove: (move: string, street: number, order: number) => void
-  onDoubleClick: (street: number, order: number) => void
+  onClickPos?: (pos: number, street: number, order: number) => void
+  onClickMove?: (move: string, street: number, order: number) => void
+  onDoubleClick?: (street: number, order: number) => void
 }
 const Action: FC<ActionProps> = (props) => {
   const {
@@ -28,6 +28,10 @@ const Action: FC<ActionProps> = (props) => {
     onClickMove,
     onDoubleClick,
   } = props
+  const onClickPosF = onClickPos ? onClickPos : () => {}
+  const onClickMoveF = onClickMove ? onClickMove : () => {}
+  const onDoubleClickF = onDoubleClick ? onDoubleClick : () => {}
+
   const [isSelected, setIsSelected] = useState(true)
   const [bg, setBgColor] = useState('gray')
   const [hoverBg, setHoverBg] = useState('hover:gray')
@@ -82,7 +86,7 @@ const Action: FC<ActionProps> = (props) => {
         <Menu.Target>
           <Button
             className="rounded-l-md rounded-r-none bg-slate-600 text-white w-[35%] text-sm p-1 border-2  hover:bg-slate-700"
-            onDoubleClick={() => onDoubleClick(street, order)}
+            onDoubleClick={() => onDoubleClickF(street, order)}
           >
             {posList.map((pos, index) => {
               if (pos.num === position) {
@@ -96,8 +100,7 @@ const Action: FC<ActionProps> = (props) => {
             <Menu.Item
               key={index}
               onClick={() => {
-                console.log('onClick')
-                onClickPos(pos.num, street, order)
+                onClickPosF(pos.num, street, order)
               }}
             >
               {pos.str}
@@ -110,14 +113,14 @@ const Action: FC<ActionProps> = (props) => {
           {move === 'bet' || move === 'raise' || move === 'allin' ? (
             <Button
               className={`rounded-l-none rounded-r-md text-white ${bg} w-[65%] text-sm p-1 border-2 ${hoverBg}  uppercase`}
-              onDoubleClick={() => onDoubleClick(street, order)}
+              onDoubleClick={() => onDoubleClickF(street, order)}
             >
               {`${move}` + ` ` + `${size}`}
             </Button>
           ) : (
             <Button
               className={`rounded-l-none rounded-r-md text-white ${bg} w-[65%] text-sm p-1 border-2 ${hoverBg}  uppercase`}
-              onDoubleClick={() => onDoubleClick(street, order)}
+              onDoubleClick={() => onDoubleClickF(street, order)}
             >
               {move}
             </Button>
@@ -128,7 +131,7 @@ const Action: FC<ActionProps> = (props) => {
             <Menu.Item
               key={index}
               onClick={() => {
-                onClickMove(move, street, order)
+                onClickMoveF(move, street, order)
               }}
             >
               {move}

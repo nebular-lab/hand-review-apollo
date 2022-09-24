@@ -13,6 +13,9 @@ const Header = () => {
         <Button component={NextLink} href="/hands">
           ハンド集
         </Button>
+        <Button component={NextLink} href="/new-edit" color="orange">
+          新規作成
+        </Button>
       </div>
     </header>
   )
