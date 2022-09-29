@@ -16,8 +16,8 @@ export const Layout: FC<Props> = ({ children, title }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <Header/>
-      <main className="  mx-52  pt-10">{children}</main>
+      <Header />
+      <main className="px-32 pt-10  ">{children}</main>
     </div>
   )
 }

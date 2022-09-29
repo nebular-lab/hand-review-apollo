@@ -7,15 +7,25 @@ const HandTicket = ({
   cards,
   user,
   title,
+  xPot,
+  positions,
 }: {
   cards: CardInterface[]
   user: string
   title: string
+  xPot: number
+  positions: String[]
 }) => {
   return (
-    <div className="w-72 h-72 rounded-xl shadow-md text-gray-600">
-      <div className="bg-teal-100 h-[50%] rounded-t-xl"></div>
-      <div className="bg-white h-[50%] p-5 rounded-b-xl flex flex-col">
+    <div className="h-60 rounded-xl shadow-md text-gray-600">
+      <div className="bg-teal-100 h-[20%] rounded-t-xl"></div>
+      <div className="bg-white h-[80%] p-5 rounded-b-xl flex flex-col">
+        <div>{`${xPot}betpot`}</div>
+        <div className="flex">
+          {positions.map((position, index) => (
+            <div key={index}>{position}</div>
+          ))}
+        </div>
         <div className="flex gap-2 h-[50%]">
           {cards.map((card, index) => (
             <Card key={index} card={card} />

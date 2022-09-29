@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -16,6 +17,6 @@
     "incremental": true,
     "baseUrl": "src"
   },
-  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/@types/next-env.d.tsd.ts", "src/**/*.ts", "src/**/*.tsxsrc/@types/next-auth.d.tsd.tsuth.d.ts"],
   "exclude": ["node_modules"]
 }

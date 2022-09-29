@@ -7,6 +7,11 @@ export const editingReviewState = atom<GetHandByIdQuery>({
   default: {},
 })
 
+export const editingHandIdState = atom<string>({
+  key: 'editingCardIdState',
+  default: '',
+})
+
 export const editingCardsState = atom<CardInterface[]>({
   key: 'editingCardsState',
   default: [],
@@ -25,6 +30,15 @@ export const editingTitleState = atom<string>({
 export const editingContentState = atom<string>({
   key: 'editingContentState',
   default: '',
+})
+
+export const editingPreflopPositionState = atom<number[]>({
+  key: 'editingPreflopPositionState',
+  default: [],
+})
+export const editingPreflopRaiseCountState = atom<number>({
+  key: 'editingPreflopRaiseCountState',
+  default: 0,
 })
 
 export const editingESState = atom<number>({

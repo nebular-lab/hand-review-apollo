@@ -7,8 +7,11 @@ type Card {
   mark: String!
 }
 
-mutation CreateHands($object: hands_insert_input!) {
-  insert_hands_one(object: $object) {
+mutation CreateHands(
+  $object: hands_insert_input!
+  $on_conflict: hands_on_conflict
+) {
+  insert_hands_one(object: $object, on_conflict: $on_conflict) {
     id
     title
     content

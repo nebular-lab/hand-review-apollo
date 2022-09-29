@@ -1,4 +1,4 @@
-import { Button } from '@mantine/core'
+import { Avatar, Button } from '@mantine/core'
 import { NextLink } from '@mantine/next'
 import React from 'react'
 
@@ -12,6 +12,9 @@ const Header = () => {
         </Button>
         <Button component={NextLink} href="/hands">
           ハンド集
+        </Button>
+        <Button component={NextLink} href="/auth">
+          マイページ
         </Button>
         <Button component={NextLink} href="/new-edit" color="orange">
           新規作成

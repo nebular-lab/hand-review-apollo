@@ -3,6 +3,8 @@ import type { NextPage } from 'next'
 import { Button, Text } from '@mantine/core'
 import { Layout } from 'components/template/Layout'
 import { NextLink } from '@mantine/next'
+import ActionButton from 'components/atom/ActionButton'
+import ActionOrg from 'components/molecule/ActionMol'
 
 const Home: NextPage = () => {
   return (
