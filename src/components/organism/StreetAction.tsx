@@ -1,5 +1,13 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, Grid, Group, Space } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Grid,
+  Group,
+  NumberInput,
+  Space,
+  TextInput,
+} from '@mantine/core'
 // import { isOpenCardSetterVar, isOpenNumSetterVar, selectedCardVar } from 'cache'
 import Action, { ActionProps } from 'components/atom/Action'
 import Card from 'components/atom/Card'
@@ -77,6 +85,22 @@ const StreetAction = ({ streetIndex }: { streetIndex: StreetIndexType }) => {
       setSelectedAction({ street: street, order: order })
       setIsOpenNumSetter(true)
     }
+    // TODO pot自動計算
+    // if (street === 0 && (move === 'call' || move === 'check')) {
+    //   let betted = [0.5, 1.0, 0, 0, 0, 0]
+    //   let Pot = 1.5
+    //   let raiserSize=1.0
+    //   let chipForCall = 1.0
+    //   editingActions[street].forEach((action) => {
+    //     if (action.move === 'raise') {
+    //       Pot += action.size
+    //       raiserSize=action.size
+    //     }
+    //     if (action.move === 'call') {
+    //       nowPot
+    //     }
+    //   })
+    // }
   }
 
   const onClickMoveAdd = (move: string, street: number, order: number) => {
@@ -117,120 +141,97 @@ const StreetAction = ({ streetIndex }: { streetIndex: StreetIndexType }) => {
 
   let actionOrder = -1
   return (
-    <div>
-      <div className=" flex h-14 items-center justify-start gap-3 rounded-sm bg-white px-10 shadow-md">
-        <div>
-          {streetIndex === 0 && (
-            <div className="flex">
-              <div className="w-28 text-center text-xl">{`ES ${editingES}BB`}</div>
-              <div className="flex w-20 gap-1"></div>
-            </div>
-          )}
-          {streetIndex === 1 && (
-            <div className="flex">
-              <div className="w-28 text-center text-xl">{` ${editingPot[0]}BB`}</div>
-              <div className="flex w-20 gap-1">
-                {editingCards[0] && (
-                  <Card
-                    card={{
-                      num: editingCards[0].num,
-                      mark: editingCards[0].mark,
-                    }}
-                    isCursor={true}
-                    onClick={() => setIsOpenCardSetter(true)}
-                  />
-                )}
-                {editingCards[1] && (
-                  <Card
-                    card={{
-                      num: editingCards[1].num,
-                      mark: editingCards[1].mark,
-                    }}
-                    isCursor={true}
-                    onClick={() => setIsOpenCardSetter(true)}
-                  />
-                )}
-                {editingCards[2] && (
-                  <Card
-                    card={{
-                      num: editingCards[2].num,
-                      mark: editingCards[2].mark,
-                    }}
-                    isCursor={true}
-                    onClick={() => setIsOpenCardSetter(true)}
-                  />
-                )}
-              </div>
-            </div>
-          )}
-          {streetIndex === 2 && (
-            <div className="flex">
-              <div className="w-28 text-center text-xl">{` ${editingPot[1]}BB`}</div>
-              <div className="flex w-20 gap-1">
-                {editingCards[3] && (
-                  <Card
-                    card={{
-                      num: editingCards[3].num,
-                      mark: editingCards[3].mark,
-                    }}
-                    isCursor={true}
-                    onClick={() => setIsOpenCardSetter(true)}
-                  />
-                )}
-              </div>
-            </div>
-          )}
-          {streetIndex === 3 && (
-            <div className="flex">
-              <div className="w-28 text-center text-xl">{` ${editingPot[2]}BB`}</div>
-              <div className="flex w-20 gap-1">
-                {editingCards[4] && (
-                  <Card
-                    card={{
-                      num: editingCards[4].num,
-                      mark: editingCards[4].mark,
-                    }}
-                    isCursor={true}
-                    onClick={() => setIsOpenCardSetter(true)}
-                  />
-                )}
-              </div>
-            </div>
-          )}
-        </div>
+    <Grid
+      columns={24}
+      className="shadow-md bg-white justify-start items-center m-1"
+    >
+      {streetIndex === 0 ? (
+        <>
+          <Grid.Col span={1}>{'ES'}</Grid.Col>
+          <Grid.Col span={2}>
+            {' '}
+            <NumberInput
+              hideControls
+              value={editingES}
+              onChange={(value) => {
+                if (value) setEditingES(value)
+                else setEditingES(0)
+              }}
+            />
+          </Grid.Col>
 
-        <Space />
-        <Grid>
-          {isData &&
-            editingActions[streetIndex].map((action, index) => {
-              actionOrder = action.order
-              return (
-                <Action
-                  key={index}
-                  position={action.position}
-                  move={action.move}
-                  size={action.size}
-                  street={streetIndex}
-                  order={action.order}
-                  onClickPos={onClickPos}
-                  onClickMove={onClickMove}
-                  onDoubleClick={onDoubleClick}
-                />
-              )
+          <Grid.Col span={2}></Grid.Col>
+        </>
+      ) : (
+        <>
+          <Grid.Col span={1}>{'POT'}</Grid.Col>
+          <Grid.Col span={2}>
+            <NumberInput
+              hideControls
+              value={editingPot[streetIndex - 1]}
+              onChange={(value) => {
+                const _editingPot = _.cloneDeep(editingPot)
+                if (value) {
+                  _editingPot[streetIndex - 1] = value
+                  setEditingPot(_editingPot)
+                } else setEditingES(0)
+              }}
+            />
+          </Grid.Col>
+
+          <Grid.Col span={2} className="flex gap-1">
+            {editingCards.map((card, index) => {
+              if (
+                (streetIndex === 1 &&
+                  (index === 0 || index === 1 || index === 2)) ||
+                (streetIndex === 2 && index === 3) ||
+                (streetIndex === 3 && index === 4)
+              ) {
+                return (
+                  <Card
+                    key={index}
+                    card={{
+                      num: card.num,
+                      mark: card.mark,
+                    }}
+                    isCursor={true}
+                    onClick={() => setIsOpenCardSetter(true)}
+                  />
+                )
+              }
             })}
-          <Action
-            position={10}
-            move={'---'}
-            size={0}
-            street={streetIndex}
-            order={actionOrder + 1}
-            onClickPos={onClickPosAdd}
-            onClickMove={onClickMoveAdd}
-            onDoubleClick={onDoubleClick}
-          />
-        </Grid>
-      </div>
-    </div>
+          </Grid.Col>
+        </>
+      )}
+
+      {isData &&
+        editingActions[streetIndex].map((action, index) => {
+          actionOrder = action.order
+          return (
+            <Action
+              key={index}
+              position={action.position}
+              move={action.move}
+              size={action.size}
+              street={streetIndex}
+              order={action.order}
+              onClickPos={onClickPos}
+              onClickMove={onClickMove}
+              onDoubleClick={onDoubleClick}
+            />
+          )
+        })}
+      <Action
+        position={10}
+        move={'---'}
+        size={0}
+        street={streetIndex}
+        order={actionOrder + 1}
+        onClickPos={onClickPosAdd}
+        onClickMove={onClickMoveAdd}
+        onDoubleClick={onDoubleClick}
+      />
+    </Grid>
   )
 }
 

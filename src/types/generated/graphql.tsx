@@ -13,6 +13,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  bigint: any;
   timestamptz: any;
   uuid: any;
 };
@@ -74,6 +75,480 @@ export type String_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "accounts" */
+export type Accounts = {
+  __typename?: 'accounts';
+  access_token?: Maybe<Scalars['String']>;
+  expires_at?: Maybe<Scalars['bigint']>;
+  id: Scalars['uuid'];
+  id_token?: Maybe<Scalars['String']>;
+  oauth_token?: Maybe<Scalars['String']>;
+  oauth_token_secret?: Maybe<Scalars['String']>;
+  provider: Scalars['String'];
+  providerAccountId: Scalars['String'];
+  refresh_token?: Maybe<Scalars['String']>;
+  refresh_token_expires_in?: Maybe<Scalars['Int']>;
+  scope?: Maybe<Scalars['String']>;
+  session_state?: Maybe<Scalars['String']>;
+  token_type?: Maybe<Scalars['String']>;
+  type: Scalars['String'];
+  /** An object relationship */
+  user: Users;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "accounts" */
+export type Accounts_Aggregate = {
+  __typename?: 'accounts_aggregate';
+  aggregate?: Maybe<Accounts_Aggregate_Fields>;
+  nodes: Array<Accounts>;
+};
+
+/** aggregate fields of "accounts" */
+export type Accounts_Aggregate_Fields = {
+  __typename?: 'accounts_aggregate_fields';
+  avg?: Maybe<Accounts_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Accounts_Max_Fields>;
+  min?: Maybe<Accounts_Min_Fields>;
+  stddev?: Maybe<Accounts_Stddev_Fields>;
+  stddev_pop?: Maybe<Accounts_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Accounts_Stddev_Samp_Fields>;
+  sum?: Maybe<Accounts_Sum_Fields>;
+  var_pop?: Maybe<Accounts_Var_Pop_Fields>;
+  var_samp?: Maybe<Accounts_Var_Samp_Fields>;
+  variance?: Maybe<Accounts_Variance_Fields>;
+};
+
+
+/** aggregate fields of "accounts" */
+export type Accounts_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Accounts_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "accounts" */
+export type Accounts_Aggregate_Order_By = {
+  avg?: InputMaybe<Accounts_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Accounts_Max_Order_By>;
+  min?: InputMaybe<Accounts_Min_Order_By>;
+  stddev?: InputMaybe<Accounts_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Accounts_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Accounts_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Accounts_Sum_Order_By>;
+  var_pop?: InputMaybe<Accounts_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Accounts_Var_Samp_Order_By>;
+  variance?: InputMaybe<Accounts_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "accounts" */
+export type Accounts_Arr_Rel_Insert_Input = {
+  data: Array<Accounts_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Accounts_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Accounts_Avg_Fields = {
+  __typename?: 'accounts_avg_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "accounts" */
+export type Accounts_Avg_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "accounts". All fields are combined with a logical 'AND'. */
+export type Accounts_Bool_Exp = {
+  _and?: InputMaybe<Array<Accounts_Bool_Exp>>;
+  _not?: InputMaybe<Accounts_Bool_Exp>;
+  _or?: InputMaybe<Array<Accounts_Bool_Exp>>;
+  access_token?: InputMaybe<String_Comparison_Exp>;
+  expires_at?: InputMaybe<Bigint_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  id_token?: InputMaybe<String_Comparison_Exp>;
+  oauth_token?: InputMaybe<String_Comparison_Exp>;
+  oauth_token_secret?: InputMaybe<String_Comparison_Exp>;
+  provider?: InputMaybe<String_Comparison_Exp>;
+  providerAccountId?: InputMaybe<String_Comparison_Exp>;
+  refresh_token?: InputMaybe<String_Comparison_Exp>;
+  refresh_token_expires_in?: InputMaybe<Int_Comparison_Exp>;
+  scope?: InputMaybe<String_Comparison_Exp>;
+  session_state?: InputMaybe<String_Comparison_Exp>;
+  token_type?: InputMaybe<String_Comparison_Exp>;
+  type?: InputMaybe<String_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "accounts" */
+export enum Accounts_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  AccountsPkey = 'accounts_pkey'
+}
+
+/** input type for incrementing numeric columns in table "accounts" */
+export type Accounts_Inc_Input = {
+  expires_at?: InputMaybe<Scalars['bigint']>;
+  refresh_token_expires_in?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "accounts" */
+export type Accounts_Insert_Input = {
+  access_token?: InputMaybe<Scalars['String']>;
+  expires_at?: InputMaybe<Scalars['bigint']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  id_token?: InputMaybe<Scalars['String']>;
+  oauth_token?: InputMaybe<Scalars['String']>;
+  oauth_token_secret?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  providerAccountId?: InputMaybe<Scalars['String']>;
+  refresh_token?: InputMaybe<Scalars['String']>;
+  refresh_token_expires_in?: InputMaybe<Scalars['Int']>;
+  scope?: InputMaybe<Scalars['String']>;
+  session_state?: InputMaybe<Scalars['String']>;
+  token_type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Accounts_Max_Fields = {
+  __typename?: 'accounts_max_fields';
+  access_token?: Maybe<Scalars['String']>;
+  expires_at?: Maybe<Scalars['bigint']>;
+  id?: Maybe<Scalars['uuid']>;
+  id_token?: Maybe<Scalars['String']>;
+  oauth_token?: Maybe<Scalars['String']>;
+  oauth_token_secret?: Maybe<Scalars['String']>;
+  provider?: Maybe<Scalars['String']>;
+  providerAccountId?: Maybe<Scalars['String']>;
+  refresh_token?: Maybe<Scalars['String']>;
+  refresh_token_expires_in?: Maybe<Scalars['Int']>;
+  scope?: Maybe<Scalars['String']>;
+  session_state?: Maybe<Scalars['String']>;
+  token_type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "accounts" */
+export type Accounts_Max_Order_By = {
+  access_token?: InputMaybe<Order_By>;
+  expires_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  id_token?: InputMaybe<Order_By>;
+  oauth_token?: InputMaybe<Order_By>;
+  oauth_token_secret?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  providerAccountId?: InputMaybe<Order_By>;
+  refresh_token?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+  scope?: InputMaybe<Order_By>;
+  session_state?: InputMaybe<Order_By>;
+  token_type?: InputMaybe<Order_By>;
+  type?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Accounts_Min_Fields = {
+  __typename?: 'accounts_min_fields';
+  access_token?: Maybe<Scalars['String']>;
+  expires_at?: Maybe<Scalars['bigint']>;
+  id?: Maybe<Scalars['uuid']>;
+  id_token?: Maybe<Scalars['String']>;
+  oauth_token?: Maybe<Scalars['String']>;
+  oauth_token_secret?: Maybe<Scalars['String']>;
+  provider?: Maybe<Scalars['String']>;
+  providerAccountId?: Maybe<Scalars['String']>;
+  refresh_token?: Maybe<Scalars['String']>;
+  refresh_token_expires_in?: Maybe<Scalars['Int']>;
+  scope?: Maybe<Scalars['String']>;
+  session_state?: Maybe<Scalars['String']>;
+  token_type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "accounts" */
+export type Accounts_Min_Order_By = {
+  access_token?: InputMaybe<Order_By>;
+  expires_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  id_token?: InputMaybe<Order_By>;
+  oauth_token?: InputMaybe<Order_By>;
+  oauth_token_secret?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  providerAccountId?: InputMaybe<Order_By>;
+  refresh_token?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+  scope?: InputMaybe<Order_By>;
+  session_state?: InputMaybe<Order_By>;
+  token_type?: InputMaybe<Order_By>;
+  type?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "accounts" */
+export type Accounts_Mutation_Response = {
+  __typename?: 'accounts_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Accounts>;
+};
+
+/** on_conflict condition type for table "accounts" */
+export type Accounts_On_Conflict = {
+  constraint: Accounts_Constraint;
+  update_columns?: Array<Accounts_Update_Column>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "accounts". */
+export type Accounts_Order_By = {
+  access_token?: InputMaybe<Order_By>;
+  expires_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  id_token?: InputMaybe<Order_By>;
+  oauth_token?: InputMaybe<Order_By>;
+  oauth_token_secret?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  providerAccountId?: InputMaybe<Order_By>;
+  refresh_token?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+  scope?: InputMaybe<Order_By>;
+  session_state?: InputMaybe<Order_By>;
+  token_type?: InputMaybe<Order_By>;
+  type?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: accounts */
+export type Accounts_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "accounts" */
+export enum Accounts_Select_Column {
+  /** column name */
+  AccessToken = 'access_token',
+  /** column name */
+  ExpiresAt = 'expires_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IdToken = 'id_token',
+  /** column name */
+  OauthToken = 'oauth_token',
+  /** column name */
+  OauthTokenSecret = 'oauth_token_secret',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  ProviderAccountId = 'providerAccountId',
+  /** column name */
+  RefreshToken = 'refresh_token',
+  /** column name */
+  RefreshTokenExpiresIn = 'refresh_token_expires_in',
+  /** column name */
+  Scope = 'scope',
+  /** column name */
+  SessionState = 'session_state',
+  /** column name */
+  TokenType = 'token_type',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "accounts" */
+export type Accounts_Set_Input = {
+  access_token?: InputMaybe<Scalars['String']>;
+  expires_at?: InputMaybe<Scalars['bigint']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  id_token?: InputMaybe<Scalars['String']>;
+  oauth_token?: InputMaybe<Scalars['String']>;
+  oauth_token_secret?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  providerAccountId?: InputMaybe<Scalars['String']>;
+  refresh_token?: InputMaybe<Scalars['String']>;
+  refresh_token_expires_in?: InputMaybe<Scalars['Int']>;
+  scope?: InputMaybe<Scalars['String']>;
+  session_state?: InputMaybe<Scalars['String']>;
+  token_type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Accounts_Stddev_Fields = {
+  __typename?: 'accounts_stddev_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "accounts" */
+export type Accounts_Stddev_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Accounts_Stddev_Pop_Fields = {
+  __typename?: 'accounts_stddev_pop_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "accounts" */
+export type Accounts_Stddev_Pop_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Accounts_Stddev_Samp_Fields = {
+  __typename?: 'accounts_stddev_samp_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "accounts" */
+export type Accounts_Stddev_Samp_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "accounts" */
+export type Accounts_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Accounts_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Accounts_Stream_Cursor_Value_Input = {
+  access_token?: InputMaybe<Scalars['String']>;
+  expires_at?: InputMaybe<Scalars['bigint']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  id_token?: InputMaybe<Scalars['String']>;
+  oauth_token?: InputMaybe<Scalars['String']>;
+  oauth_token_secret?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  providerAccountId?: InputMaybe<Scalars['String']>;
+  refresh_token?: InputMaybe<Scalars['String']>;
+  refresh_token_expires_in?: InputMaybe<Scalars['Int']>;
+  scope?: InputMaybe<Scalars['String']>;
+  session_state?: InputMaybe<Scalars['String']>;
+  token_type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate sum on columns */
+export type Accounts_Sum_Fields = {
+  __typename?: 'accounts_sum_fields';
+  expires_at?: Maybe<Scalars['bigint']>;
+  refresh_token_expires_in?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "accounts" */
+export type Accounts_Sum_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** update columns of table "accounts" */
+export enum Accounts_Update_Column {
+  /** column name */
+  AccessToken = 'access_token',
+  /** column name */
+  ExpiresAt = 'expires_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IdToken = 'id_token',
+  /** column name */
+  OauthToken = 'oauth_token',
+  /** column name */
+  OauthTokenSecret = 'oauth_token_secret',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  ProviderAccountId = 'providerAccountId',
+  /** column name */
+  RefreshToken = 'refresh_token',
+  /** column name */
+  RefreshTokenExpiresIn = 'refresh_token_expires_in',
+  /** column name */
+  Scope = 'scope',
+  /** column name */
+  SessionState = 'session_state',
+  /** column name */
+  TokenType = 'token_type',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Accounts_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Accounts_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Accounts_Set_Input>;
+  where: Accounts_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Accounts_Var_Pop_Fields = {
+  __typename?: 'accounts_var_pop_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "accounts" */
+export type Accounts_Var_Pop_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Accounts_Var_Samp_Fields = {
+  __typename?: 'accounts_var_samp_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "accounts" */
+export type Accounts_Var_Samp_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Accounts_Variance_Fields = {
+  __typename?: 'accounts_variance_fields';
+  expires_at?: Maybe<Scalars['Float']>;
+  refresh_token_expires_in?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "accounts" */
+export type Accounts_Variance_Order_By = {
+  expires_at?: InputMaybe<Order_By>;
+  refresh_token_expires_in?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "actions" */
@@ -498,6 +973,19 @@ export type Actions_Variance_Order_By = {
   position?: InputMaybe<Order_By>;
   size?: InputMaybe<Order_By>;
   street?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
+export type Bigint_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['bigint']>;
+  _gt?: InputMaybe<Scalars['bigint']>;
+  _gte?: InputMaybe<Scalars['bigint']>;
+  _in?: InputMaybe<Array<Scalars['bigint']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['bigint']>;
+  _lte?: InputMaybe<Scalars['bigint']>;
+  _neq?: InputMaybe<Scalars['bigint']>;
+  _nin?: InputMaybe<Array<Scalars['bigint']>>;
 };
 
 /** columns and relationships of "cards" */
@@ -1565,6 +2053,10 @@ export type Labels_Updates = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** delete data from the table: "accounts" */
+  delete_accounts?: Maybe<Accounts_Mutation_Response>;
+  /** delete single row from the table: "accounts" */
+  delete_accounts_by_pk?: Maybe<Accounts>;
   /** delete data from the table: "actions" */
   delete_actions?: Maybe<Actions_Mutation_Response>;
   /** delete single row from the table: "actions" */
@@ -1589,6 +2081,22 @@ export type Mutation_Root = {
   delete_pots?: Maybe<Pots_Mutation_Response>;
   /** delete single row from the table: "pots" */
   delete_pots_by_pk?: Maybe<Pots>;
+  /** delete data from the table: "sessions" */
+  delete_sessions?: Maybe<Sessions_Mutation_Response>;
+  /** delete single row from the table: "sessions" */
+  delete_sessions_by_pk?: Maybe<Sessions>;
+  /** delete data from the table: "users" */
+  delete_users?: Maybe<Users_Mutation_Response>;
+  /** delete single row from the table: "users" */
+  delete_users_by_pk?: Maybe<Users>;
+  /** delete data from the table: "verification_tokens" */
+  delete_verification_tokens?: Maybe<Verification_Tokens_Mutation_Response>;
+  /** delete single row from the table: "verification_tokens" */
+  delete_verification_tokens_by_pk?: Maybe<Verification_Tokens>;
+  /** insert data into the table: "accounts" */
+  insert_accounts?: Maybe<Accounts_Mutation_Response>;
+  /** insert a single row into the table: "accounts" */
+  insert_accounts_one?: Maybe<Accounts>;
   /** insert data into the table: "actions" */
   insert_actions?: Maybe<Actions_Mutation_Response>;
   /** insert a single row into the table: "actions" */
@@ -1613,6 +2121,24 @@ export type Mutation_Root = {
   insert_pots?: Maybe<Pots_Mutation_Response>;
   /** insert a single row into the table: "pots" */
   insert_pots_one?: Maybe<Pots>;
+  /** insert data into the table: "sessions" */
+  insert_sessions?: Maybe<Sessions_Mutation_Response>;
+  /** insert a single row into the table: "sessions" */
+  insert_sessions_one?: Maybe<Sessions>;
+  /** insert data into the table: "users" */
+  insert_users?: Maybe<Users_Mutation_Response>;
+  /** insert a single row into the table: "users" */
+  insert_users_one?: Maybe<Users>;
+  /** insert data into the table: "verification_tokens" */
+  insert_verification_tokens?: Maybe<Verification_Tokens_Mutation_Response>;
+  /** insert a single row into the table: "verification_tokens" */
+  insert_verification_tokens_one?: Maybe<Verification_Tokens>;
+  /** update data of the table: "accounts" */
+  update_accounts?: Maybe<Accounts_Mutation_Response>;
+  /** update single row of the table: "accounts" */
+  update_accounts_by_pk?: Maybe<Accounts>;
+  /** update multiples rows of table: "accounts" */
+  update_accounts_many?: Maybe<Array<Maybe<Accounts_Mutation_Response>>>;
   /** update data of the table: "actions" */
   update_actions?: Maybe<Actions_Mutation_Response>;
   /** update single row of the table: "actions" */
@@ -1649,6 +2175,36 @@ export type Mutation_Root = {
   update_pots_by_pk?: Maybe<Pots>;
   /** update multiples rows of table: "pots" */
   update_pots_many?: Maybe<Array<Maybe<Pots_Mutation_Response>>>;
+  /** update data of the table: "sessions" */
+  update_sessions?: Maybe<Sessions_Mutation_Response>;
+  /** update single row of the table: "sessions" */
+  update_sessions_by_pk?: Maybe<Sessions>;
+  /** update multiples rows of table: "sessions" */
+  update_sessions_many?: Maybe<Array<Maybe<Sessions_Mutation_Response>>>;
+  /** update data of the table: "users" */
+  update_users?: Maybe<Users_Mutation_Response>;
+  /** update single row of the table: "users" */
+  update_users_by_pk?: Maybe<Users>;
+  /** update multiples rows of table: "users" */
+  update_users_many?: Maybe<Array<Maybe<Users_Mutation_Response>>>;
+  /** update data of the table: "verification_tokens" */
+  update_verification_tokens?: Maybe<Verification_Tokens_Mutation_Response>;
+  /** update single row of the table: "verification_tokens" */
+  update_verification_tokens_by_pk?: Maybe<Verification_Tokens>;
+  /** update multiples rows of table: "verification_tokens" */
+  update_verification_tokens_many?: Maybe<Array<Maybe<Verification_Tokens_Mutation_Response>>>;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_AccountsArgs = {
+  where: Accounts_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Accounts_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1721,6 +2277,56 @@ export type Mutation_RootDelete_PotsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Pots_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_SessionsArgs = {
+  where: Sessions_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sessions_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_UsersArgs = {
+  where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Users_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Verification_TokensArgs = {
+  where: Verification_Tokens_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Verification_Tokens_By_PkArgs = {
+  token: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_AccountsArgs = {
+  objects: Array<Accounts_Insert_Input>;
+  on_conflict?: InputMaybe<Accounts_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Accounts_OneArgs = {
+  object: Accounts_Insert_Input;
+  on_conflict?: InputMaybe<Accounts_On_Conflict>;
 };
 
 
@@ -1805,6 +2411,70 @@ export type Mutation_RootInsert_PotsArgs = {
 export type Mutation_RootInsert_Pots_OneArgs = {
   object: Pots_Insert_Input;
   on_conflict?: InputMaybe<Pots_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_SessionsArgs = {
+  objects: Array<Sessions_Insert_Input>;
+  on_conflict?: InputMaybe<Sessions_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sessions_OneArgs = {
+  object: Sessions_Insert_Input;
+  on_conflict?: InputMaybe<Sessions_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_UsersArgs = {
+  objects: Array<Users_Insert_Input>;
+  on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Users_OneArgs = {
+  object: Users_Insert_Input;
+  on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Verification_TokensArgs = {
+  objects: Array<Verification_Tokens_Insert_Input>;
+  on_conflict?: InputMaybe<Verification_Tokens_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Verification_Tokens_OneArgs = {
+  object: Verification_Tokens_Insert_Input;
+  on_conflict?: InputMaybe<Verification_Tokens_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AccountsArgs = {
+  _inc?: InputMaybe<Accounts_Inc_Input>;
+  _set?: InputMaybe<Accounts_Set_Input>;
+  where: Accounts_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Accounts_By_PkArgs = {
+  _inc?: InputMaybe<Accounts_Inc_Input>;
+  _set?: InputMaybe<Accounts_Set_Input>;
+  pk_columns: Accounts_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Accounts_ManyArgs = {
+  updates: Array<Accounts_Updates>;
 };
 
 
@@ -1933,6 +2603,66 @@ export type Mutation_RootUpdate_Pots_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Pots_ManyArgs = {
   updates: Array<Pots_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_SessionsArgs = {
+  _set?: InputMaybe<Sessions_Set_Input>;
+  where: Sessions_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sessions_By_PkArgs = {
+  _set?: InputMaybe<Sessions_Set_Input>;
+  pk_columns: Sessions_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sessions_ManyArgs = {
+  updates: Array<Sessions_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_UsersArgs = {
+  _set?: InputMaybe<Users_Set_Input>;
+  where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_By_PkArgs = {
+  _set?: InputMaybe<Users_Set_Input>;
+  pk_columns: Users_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_ManyArgs = {
+  updates: Array<Users_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Verification_TokensArgs = {
+  _set?: InputMaybe<Verification_Tokens_Set_Input>;
+  where: Verification_Tokens_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Verification_Tokens_By_PkArgs = {
+  _set?: InputMaybe<Verification_Tokens_Set_Input>;
+  pk_columns: Verification_Tokens_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Verification_Tokens_ManyArgs = {
+  updates: Array<Verification_Tokens_Updates>;
 };
 
 /** column ordering options */
@@ -2276,6 +3006,12 @@ export type Pots_Variance_Order_By = {
 export type Query_Root = {
   __typename?: 'query_root';
   /** An array relationship */
+  accounts: Array<Accounts>;
+  /** An aggregate relationship */
+  accounts_aggregate: Accounts_Aggregate;
+  /** fetch data from the table: "accounts" using primary key columns */
+  accounts_by_pk?: Maybe<Accounts>;
+  /** An array relationship */
   actions: Array<Actions>;
   /** An aggregate relationship */
   actions_aggregate: Actions_Aggregate;
@@ -2311,6 +3047,47 @@ export type Query_Root = {
   pots_aggregate: Pots_Aggregate;
   /** fetch data from the table: "pots" using primary key columns */
   pots_by_pk?: Maybe<Pots>;
+  /** An array relationship */
+  sessions: Array<Sessions>;
+  /** An aggregate relationship */
+  sessions_aggregate: Sessions_Aggregate;
+  /** fetch data from the table: "sessions" using primary key columns */
+  sessions_by_pk?: Maybe<Sessions>;
+  /** fetch data from the table: "users" */
+  users: Array<Users>;
+  /** fetch aggregated fields from the table: "users" */
+  users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "users" using primary key columns */
+  users_by_pk?: Maybe<Users>;
+  /** fetch data from the table: "verification_tokens" */
+  verification_tokens: Array<Verification_Tokens>;
+  /** fetch aggregated fields from the table: "verification_tokens" */
+  verification_tokens_aggregate: Verification_Tokens_Aggregate;
+  /** fetch data from the table: "verification_tokens" using primary key columns */
+  verification_tokens_by_pk?: Maybe<Verification_Tokens>;
+};
+
+
+export type Query_RootAccountsArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Query_RootAccounts_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Query_RootAccounts_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -2451,8 +3228,277 @@ export type Query_RootPots_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
+
+export type Query_RootSessionsArgs = {
+  distinct_on?: InputMaybe<Array<Sessions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Sessions_Order_By>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+
+export type Query_RootSessions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Sessions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Sessions_Order_By>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+
+export type Query_RootSessions_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootUsersArgs = {
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Users_Order_By>>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Query_RootUsers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Users_Order_By>>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Query_RootUsers_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootVerification_TokensArgs = {
+  distinct_on?: InputMaybe<Array<Verification_Tokens_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Verification_Tokens_Order_By>>;
+  where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
+
+export type Query_RootVerification_Tokens_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Verification_Tokens_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Verification_Tokens_Order_By>>;
+  where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
+
+export type Query_RootVerification_Tokens_By_PkArgs = {
+  token: Scalars['String'];
+};
+
+/** columns and relationships of "sessions" */
+export type Sessions = {
+  __typename?: 'sessions';
+  expires?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['uuid'];
+  sessionToken: Scalars['String'];
+  /** An object relationship */
+  user: Users;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "sessions" */
+export type Sessions_Aggregate = {
+  __typename?: 'sessions_aggregate';
+  aggregate?: Maybe<Sessions_Aggregate_Fields>;
+  nodes: Array<Sessions>;
+};
+
+/** aggregate fields of "sessions" */
+export type Sessions_Aggregate_Fields = {
+  __typename?: 'sessions_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Sessions_Max_Fields>;
+  min?: Maybe<Sessions_Min_Fields>;
+};
+
+
+/** aggregate fields of "sessions" */
+export type Sessions_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Sessions_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sessions" */
+export type Sessions_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Sessions_Max_Order_By>;
+  min?: InputMaybe<Sessions_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sessions" */
+export type Sessions_Arr_Rel_Insert_Input = {
+  data: Array<Sessions_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Sessions_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "sessions". All fields are combined with a logical 'AND'. */
+export type Sessions_Bool_Exp = {
+  _and?: InputMaybe<Array<Sessions_Bool_Exp>>;
+  _not?: InputMaybe<Sessions_Bool_Exp>;
+  _or?: InputMaybe<Array<Sessions_Bool_Exp>>;
+  expires?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  sessionToken?: InputMaybe<String_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sessions" */
+export enum Sessions_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  SessionsPkey = 'sessions_pkey'
+}
+
+/** input type for inserting data into table "sessions" */
+export type Sessions_Insert_Input = {
+  expires?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  sessionToken?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Sessions_Max_Fields = {
+  __typename?: 'sessions_max_fields';
+  expires?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  sessionToken?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "sessions" */
+export type Sessions_Max_Order_By = {
+  expires?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  sessionToken?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sessions_Min_Fields = {
+  __typename?: 'sessions_min_fields';
+  expires?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  sessionToken?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "sessions" */
+export type Sessions_Min_Order_By = {
+  expires?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  sessionToken?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "sessions" */
+export type Sessions_Mutation_Response = {
+  __typename?: 'sessions_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Sessions>;
+};
+
+/** on_conflict condition type for table "sessions" */
+export type Sessions_On_Conflict = {
+  constraint: Sessions_Constraint;
+  update_columns?: Array<Sessions_Update_Column>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "sessions". */
+export type Sessions_Order_By = {
+  expires?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  sessionToken?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: sessions */
+export type Sessions_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "sessions" */
+export enum Sessions_Select_Column {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SessionToken = 'sessionToken',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "sessions" */
+export type Sessions_Set_Input = {
+  expires?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  sessionToken?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "sessions" */
+export type Sessions_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Sessions_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Sessions_Stream_Cursor_Value_Input = {
+  expires?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  sessionToken?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "sessions" */
+export enum Sessions_Update_Column {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SessionToken = 'sessionToken',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Sessions_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Sessions_Set_Input>;
+  where: Sessions_Bool_Exp;
+};
+
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** An array relationship */
+  accounts: Array<Accounts>;
+  /** An aggregate relationship */
+  accounts_aggregate: Accounts_Aggregate;
+  /** fetch data from the table: "accounts" using primary key columns */
+  accounts_by_pk?: Maybe<Accounts>;
+  /** fetch data from the table in a streaming manner : "accounts" */
+  accounts_stream: Array<Accounts>;
   /** An array relationship */
   actions: Array<Actions>;
   /** An aggregate relationship */
@@ -2501,6 +3547,60 @@ export type Subscription_Root = {
   pots_by_pk?: Maybe<Pots>;
   /** fetch data from the table in a streaming manner : "pots" */
   pots_stream: Array<Pots>;
+  /** An array relationship */
+  sessions: Array<Sessions>;
+  /** An aggregate relationship */
+  sessions_aggregate: Sessions_Aggregate;
+  /** fetch data from the table: "sessions" using primary key columns */
+  sessions_by_pk?: Maybe<Sessions>;
+  /** fetch data from the table in a streaming manner : "sessions" */
+  sessions_stream: Array<Sessions>;
+  /** fetch data from the table: "users" */
+  users: Array<Users>;
+  /** fetch aggregated fields from the table: "users" */
+  users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "users" using primary key columns */
+  users_by_pk?: Maybe<Users>;
+  /** fetch data from the table in a streaming manner : "users" */
+  users_stream: Array<Users>;
+  /** fetch data from the table: "verification_tokens" */
+  verification_tokens: Array<Verification_Tokens>;
+  /** fetch aggregated fields from the table: "verification_tokens" */
+  verification_tokens_aggregate: Verification_Tokens_Aggregate;
+  /** fetch data from the table: "verification_tokens" using primary key columns */
+  verification_tokens_by_pk?: Maybe<Verification_Tokens>;
+  /** fetch data from the table in a streaming manner : "verification_tokens" */
+  verification_tokens_stream: Array<Verification_Tokens>;
+};
+
+
+export type Subscription_RootAccountsArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Subscription_RootAccounts_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Subscription_RootAccounts_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootAccounts_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Accounts_Stream_Cursor_Input>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
 
@@ -2683,6 +3783,96 @@ export type Subscription_RootPots_StreamArgs = {
   where?: InputMaybe<Pots_Bool_Exp>;
 };
 
+
+export type Subscription_RootSessionsArgs = {
+  distinct_on?: InputMaybe<Array<Sessions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Sessions_Order_By>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+
+export type Subscription_RootSessions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Sessions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Sessions_Order_By>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+
+export type Subscription_RootSessions_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootSessions_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Sessions_Stream_Cursor_Input>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+
+export type Subscription_RootUsersArgs = {
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Users_Order_By>>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Subscription_RootUsers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Users_Order_By>>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Subscription_RootUsers_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootUsers_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Users_Stream_Cursor_Input>>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Subscription_RootVerification_TokensArgs = {
+  distinct_on?: InputMaybe<Array<Verification_Tokens_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Verification_Tokens_Order_By>>;
+  where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
+
+export type Subscription_RootVerification_Tokens_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Verification_Tokens_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Verification_Tokens_Order_By>>;
+  where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
+
+export type Subscription_RootVerification_Tokens_By_PkArgs = {
+  token: Scalars['String'];
+};
+
+
+export type Subscription_RootVerification_Tokens_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Verification_Tokens_Stream_Cursor_Input>>;
+  where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['timestamptz']>;
@@ -2694,6 +3884,238 @@ export type Timestamptz_Comparison_Exp = {
   _lte?: InputMaybe<Scalars['timestamptz']>;
   _neq?: InputMaybe<Scalars['timestamptz']>;
   _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
+};
+
+/** columns and relationships of "users" */
+export type Users = {
+  __typename?: 'users';
+  /** An array relationship */
+  accounts: Array<Accounts>;
+  /** An aggregate relationship */
+  accounts_aggregate: Accounts_Aggregate;
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['uuid'];
+  image?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  sessions: Array<Sessions>;
+  /** An aggregate relationship */
+  sessions_aggregate: Sessions_Aggregate;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersAccountsArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersAccounts_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersSessionsArgs = {
+  distinct_on?: InputMaybe<Array<Sessions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Sessions_Order_By>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersSessions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Sessions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Sessions_Order_By>>;
+  where?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+/** aggregated selection of "users" */
+export type Users_Aggregate = {
+  __typename?: 'users_aggregate';
+  aggregate?: Maybe<Users_Aggregate_Fields>;
+  nodes: Array<Users>;
+};
+
+/** aggregate fields of "users" */
+export type Users_Aggregate_Fields = {
+  __typename?: 'users_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Users_Max_Fields>;
+  min?: Maybe<Users_Min_Fields>;
+};
+
+
+/** aggregate fields of "users" */
+export type Users_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Users_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+export type Users_Bool_Exp = {
+  _and?: InputMaybe<Array<Users_Bool_Exp>>;
+  _not?: InputMaybe<Users_Bool_Exp>;
+  _or?: InputMaybe<Array<Users_Bool_Exp>>;
+  accounts?: InputMaybe<Accounts_Bool_Exp>;
+  email?: InputMaybe<String_Comparison_Exp>;
+  emailVerified?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  image?: InputMaybe<String_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  sessions?: InputMaybe<Sessions_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "users" */
+export enum Users_Constraint {
+  /** unique or primary key constraint on columns "email" */
+  UsersEmailKey = 'users_email_key',
+  /** unique or primary key constraint on columns "id" */
+  UsersPkey = 'users_pkey'
+}
+
+/** input type for inserting data into table "users" */
+export type Users_Insert_Input = {
+  accounts?: InputMaybe<Accounts_Arr_Rel_Insert_Input>;
+  email?: InputMaybe<Scalars['String']>;
+  emailVerified?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  image?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  sessions?: InputMaybe<Sessions_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Users_Max_Fields = {
+  __typename?: 'users_max_fields';
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Users_Min_Fields = {
+  __typename?: 'users_min_fields';
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "users" */
+export type Users_Mutation_Response = {
+  __typename?: 'users_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Users>;
+};
+
+/** input type for inserting object relation for remote table "users" */
+export type Users_Obj_Rel_Insert_Input = {
+  data: Users_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+/** on_conflict condition type for table "users" */
+export type Users_On_Conflict = {
+  constraint: Users_Constraint;
+  update_columns?: Array<Users_Update_Column>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "users". */
+export type Users_Order_By = {
+  accounts_aggregate?: InputMaybe<Accounts_Aggregate_Order_By>;
+  email?: InputMaybe<Order_By>;
+  emailVerified?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  image?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  sessions_aggregate?: InputMaybe<Sessions_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: users */
+export type Users_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "users" */
+export enum Users_Select_Column {
+  /** column name */
+  Email = 'email',
+  /** column name */
+  EmailVerified = 'emailVerified',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "users" */
+export type Users_Set_Input = {
+  email?: InputMaybe<Scalars['String']>;
+  emailVerified?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  image?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "users" */
+export type Users_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Users_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Users_Stream_Cursor_Value_Input = {
+  email?: InputMaybe<Scalars['String']>;
+  emailVerified?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  image?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "users" */
+export enum Users_Update_Column {
+  /** column name */
+  Email = 'email',
+  /** column name */
+  EmailVerified = 'emailVerified',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  Name = 'name'
+}
+
+export type Users_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Users_Set_Input>;
+  where: Users_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -2709,12 +4131,165 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
+/** columns and relationships of "verification_tokens" */
+export type Verification_Tokens = {
+  __typename?: 'verification_tokens';
+  expires?: Maybe<Scalars['timestamptz']>;
+  identifier: Scalars['String'];
+  token: Scalars['String'];
+};
+
+/** aggregated selection of "verification_tokens" */
+export type Verification_Tokens_Aggregate = {
+  __typename?: 'verification_tokens_aggregate';
+  aggregate?: Maybe<Verification_Tokens_Aggregate_Fields>;
+  nodes: Array<Verification_Tokens>;
+};
+
+/** aggregate fields of "verification_tokens" */
+export type Verification_Tokens_Aggregate_Fields = {
+  __typename?: 'verification_tokens_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Verification_Tokens_Max_Fields>;
+  min?: Maybe<Verification_Tokens_Min_Fields>;
+};
+
+
+/** aggregate fields of "verification_tokens" */
+export type Verification_Tokens_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Verification_Tokens_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "verification_tokens". All fields are combined with a logical 'AND'. */
+export type Verification_Tokens_Bool_Exp = {
+  _and?: InputMaybe<Array<Verification_Tokens_Bool_Exp>>;
+  _not?: InputMaybe<Verification_Tokens_Bool_Exp>;
+  _or?: InputMaybe<Array<Verification_Tokens_Bool_Exp>>;
+  expires?: InputMaybe<Timestamptz_Comparison_Exp>;
+  identifier?: InputMaybe<String_Comparison_Exp>;
+  token?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "verification_tokens" */
+export enum Verification_Tokens_Constraint {
+  /** unique or primary key constraint on columns "token" */
+  VerificationTokensPkey = 'verification_tokens_pkey'
+}
+
+/** input type for inserting data into table "verification_tokens" */
+export type Verification_Tokens_Insert_Input = {
+  expires?: InputMaybe<Scalars['timestamptz']>;
+  identifier?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Verification_Tokens_Max_Fields = {
+  __typename?: 'verification_tokens_max_fields';
+  expires?: Maybe<Scalars['timestamptz']>;
+  identifier?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Verification_Tokens_Min_Fields = {
+  __typename?: 'verification_tokens_min_fields';
+  expires?: Maybe<Scalars['timestamptz']>;
+  identifier?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "verification_tokens" */
+export type Verification_Tokens_Mutation_Response = {
+  __typename?: 'verification_tokens_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Verification_Tokens>;
+};
+
+/** on_conflict condition type for table "verification_tokens" */
+export type Verification_Tokens_On_Conflict = {
+  constraint: Verification_Tokens_Constraint;
+  update_columns?: Array<Verification_Tokens_Update_Column>;
+  where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "verification_tokens". */
+export type Verification_Tokens_Order_By = {
+  expires?: InputMaybe<Order_By>;
+  identifier?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: verification_tokens */
+export type Verification_Tokens_Pk_Columns_Input = {
+  token: Scalars['String'];
+};
+
+/** select columns of table "verification_tokens" */
+export enum Verification_Tokens_Select_Column {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Identifier = 'identifier',
+  /** column name */
+  Token = 'token'
+}
+
+/** input type for updating data in table "verification_tokens" */
+export type Verification_Tokens_Set_Input = {
+  expires?: InputMaybe<Scalars['timestamptz']>;
+  identifier?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "verification_tokens" */
+export type Verification_Tokens_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Verification_Tokens_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Verification_Tokens_Stream_Cursor_Value_Input = {
+  expires?: InputMaybe<Scalars['timestamptz']>;
+  identifier?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "verification_tokens" */
+export enum Verification_Tokens_Update_Column {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Identifier = 'identifier',
+  /** column name */
+  Token = 'token'
+}
+
+export type Verification_Tokens_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Verification_Tokens_Set_Input>;
+  where: Verification_Tokens_Bool_Exp;
+};
+
 export type CreateHandsMutationVariables = Exact<{
   object: Hands_Insert_Input;
+  on_conflict?: InputMaybe<Hands_On_Conflict>;
 }>;
 
 
 export type CreateHandsMutation = { __typename?: 'mutation_root', insert_hands_one?: { __typename?: 'hands', id: any, title: string, content: string, es: number, user_id: string, created_at: any, updated_at: any, actions: Array<{ __typename?: 'actions', id: any, hand_id: any, position: number, move: string, size: number, order: number, street: number, created_at: any, updated_at: any }>, hands_cards: Array<{ __typename?: 'hands_cards', order: number, card: { __typename?: 'cards', id: any, num: string, mark: string } }>, pots: Array<{ __typename?: 'pots', id: any, hand_id: any, size: number, street: number }> } | null };
+
+export type DeleteHandsMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteHandsMutation = { __typename?: 'mutation_root', delete_hands_by_pk?: { __typename?: 'hands', id: any } | null };
 
 export type GetAllHandIDsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2733,10 +4308,21 @@ export type GetHandByIdQueryVariables = Exact<{
 
 export type GetHandByIdQuery = { __typename?: 'query_root', hands_by_pk?: { __typename?: 'hands', id: any, title: string, content: string, es: number, user_id: string, created_at: any, updated_at: any, actions: Array<{ __typename?: 'actions', id: any, hand_id: any, position: number, move: string, size: number, order: number, street: number, created_at: any, updated_at: any }>, hands_cards: Array<{ __typename?: 'hands_cards', order: number, card: { __typename?: 'cards', id: any, num: string, mark: string } }>, pots: Array<{ __typename?: 'pots', id: any, hand_id: any, size: number, street: number }> } | null };
 
+export type UpdateHandsMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  handObj?: InputMaybe<Hands_Set_Input>;
+  potObj: Array<Pots_Insert_Input> | Pots_Insert_Input;
+  actionsObj: Array<Actions_Insert_Input> | Actions_Insert_Input;
+  handsCardsObj: Array<Hands_Cards_Insert_Input> | Hands_Cards_Insert_Input;
+}>;
+
+
+export type UpdateHandsMutation = { __typename?: 'mutation_root', update_hands_by_pk?: { __typename?: 'hands', id: any, title: string, es: number, content: string } | null, delete_pots?: { __typename?: 'pots_mutation_response', affected_rows: number } | null, insert_pots?: { __typename?: 'pots_mutation_response', affected_rows: number } | null, delete_actions?: { __typename?: 'actions_mutation_response', affected_rows: number } | null, insert_actions?: { __typename?: 'actions_mutation_response', affected_rows: number } | null, delete_hands_cards?: { __typename?: 'hands_cards_mutation_response', affected_rows: number } | null, insert_hands_cards?: { __typename?: 'hands_cards_mutation_response', affected_rows: number } | null };
+
 
 export const CreateHandsDocument = gql`
-    mutation CreateHands($object: hands_insert_input!) {
-  insert_hands_one(object: $object) {
+    mutation CreateHands($object: hands_insert_input!, $on_conflict: hands_on_conflict) {
+  insert_hands_one(object: $object, on_conflict: $on_conflict) {
     id
     title
     content
@@ -2788,6 +4374,7 @@ export type CreateHandsMutationFn = Apollo.MutationFunction<CreateHandsMutation,
  * const [createHandsMutation, { data, loading, error }] = useCreateHandsMutation({
  *   variables: {
  *      object: // value for 'object'
+ *      on_conflict: // value for 'on_conflict'
  *   },
  * });
  */
@@ -2798,6 +4385,39 @@ export function useCreateHandsMutation(baseOptions?: Apollo.MutationHookOptions<
 export type CreateHandsMutationHookResult = ReturnType<typeof useCreateHandsMutation>;
 export type CreateHandsMutationResult = Apollo.MutationResult<CreateHandsMutation>;
 export type CreateHandsMutationOptions = Apollo.BaseMutationOptions<CreateHandsMutation, CreateHandsMutationVariables>;
+export const DeleteHandsDocument = gql`
+    mutation DeleteHands($id: uuid!) {
+  delete_hands_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteHandsMutationFn = Apollo.MutationFunction<DeleteHandsMutation, DeleteHandsMutationVariables>;
+
+/**
+ * __useDeleteHandsMutation__
+ *
+ * To run a mutation, you first call `useDeleteHandsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteHandsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteHandsMutation, { data, loading, error }] = useDeleteHandsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteHandsMutation(baseOptions?: Apollo.MutationHookOptions<DeleteHandsMutation, DeleteHandsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteHandsMutation, DeleteHandsMutationVariables>(DeleteHandsDocument, options);
+      }
+export type DeleteHandsMutationHookResult = ReturnType<typeof useDeleteHandsMutation>;
+export type DeleteHandsMutationResult = Apollo.MutationResult<DeleteHandsMutation>;
+export type DeleteHandsMutationOptions = Apollo.BaseMutationOptions<DeleteHandsMutation, DeleteHandsMutationVariables>;
 export const GetAllHandIDsDocument = gql`
     query GetAllHandIDs {
   hands {
@@ -2963,3 +4583,61 @@ export function useGetHandByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetHandByIdQueryHookResult = ReturnType<typeof useGetHandByIdQuery>;
 export type GetHandByIdLazyQueryHookResult = ReturnType<typeof useGetHandByIdLazyQuery>;
 export type GetHandByIdQueryResult = Apollo.QueryResult<GetHandByIdQuery, GetHandByIdQueryVariables>;
+export const UpdateHandsDocument = gql`
+    mutation UpdateHands($id: uuid!, $handObj: hands_set_input, $potObj: [pots_insert_input!]!, $actionsObj: [actions_insert_input!]!, $handsCardsObj: [hands_cards_insert_input!]!) {
+  update_hands_by_pk(pk_columns: {id: $id}, _set: $handObj) {
+    id
+    title
+    es
+    content
+  }
+  delete_pots(where: {hand_id: {_eq: $id}}) {
+    affected_rows
+  }
+  insert_pots(objects: $potObj) {
+    affected_rows
+  }
+  delete_actions(where: {hand_id: {_eq: $id}}) {
+    affected_rows
+  }
+  insert_actions(objects: $actionsObj) {
+    affected_rows
+  }
+  delete_hands_cards(where: {hand_id: {_eq: $id}}) {
+    affected_rows
+  }
+  insert_hands_cards(objects: $handsCardsObj) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateHandsMutationFn = Apollo.MutationFunction<UpdateHandsMutation, UpdateHandsMutationVariables>;
+
+/**
+ * __useUpdateHandsMutation__
+ *
+ * To run a mutation, you first call `useUpdateHandsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateHandsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateHandsMutation, { data, loading, error }] = useUpdateHandsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      handObj: // value for 'handObj'
+ *      potObj: // value for 'potObj'
+ *      actionsObj: // value for 'actionsObj'
+ *      handsCardsObj: // value for 'handsCardsObj'
+ *   },
+ * });
+ */
+export function useUpdateHandsMutation(baseOptions?: Apollo.MutationHookOptions<UpdateHandsMutation, UpdateHandsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateHandsMutation, UpdateHandsMutationVariables>(UpdateHandsDocument, options);
+      }
+export type UpdateHandsMutationHookResult = ReturnType<typeof useUpdateHandsMutation>;
+export type UpdateHandsMutationResult = Apollo.MutationResult<UpdateHandsMutation>;
+export type UpdateHandsMutationOptions = Apollo.BaseMutationOptions<UpdateHandsMutation, UpdateHandsMutationVariables>;

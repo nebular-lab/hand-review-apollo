@@ -20,9 +20,10 @@ type Props = {
 }
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo()
-  const { data } = await apolloClient.query<GetAllHandsQuery>({
+  const { data, error } = await apolloClient.query<GetAllHandsQuery>({
     query: GetAllHandsDocument,
   })
+  console.log(data)
   return {
     props: {
       hands: data.hands,
@@ -45,16 +46,56 @@ const hands: NextPage<Props> = ({ hands }) => {
       {/* {loading && <p>loading</p>}
       {error && <p>Error: {error.message}</p>} */}
       <p className="mb-6 font-bold text-3xl">ハンド一覧</p>
-      <div className="grid grid-cols-4">
+      {hands.length === 0 && (
+        <p>現在閲覧可能なハンドレビューはありません。新規作成してください。</p>
+      )}
+      <div className="grid grid-cols-4 gap-3">
         {hands.map((hand, index) => {
           const cardList: CardInterface[] = []
           hand.hands_cards.map((card, index) => {
             cardList.push({ num: card.card.num, mark: card.card.mark })
           })
+          let xPotCount = 1
+          const positionsSet = new Set<number>([])
+          hand.actions.forEach((action) => {
+            if (
+              action.street === 0 &&
+              (action.move === 'raise' || action.move === 'allin')
+            ) {
+              xPotCount += 1
+            }
+            if (action.street === 0) {
+              positionsSet.add(action.position)
+              if (action.move === 'fold') {
+                positionsSet.delete(action.position)
+              }
+            }
+          })
+          const posNum = [...positionsSet]
+          posNum.sort()
+          const posList = [
+            { str: 'UTG', num: 3 },
+            { str: 'HJ', num: 2 },
+            { str: 'CO', num: 1 },
+            { str: 'BTN', num: 0 },
+            { str: 'SB', num: 9 },
+            { str: 'BB', num: 8 },
+            { str: '---', num: 10 },
+          ]
+          const posStr: string[] = []
+          posNum.forEach((pos) => {
+            posList.forEach((setPos) => {
+              if (pos === setPos.num) {
+                posStr.push(setPos.str)
+              }
+            })
+          })
           return (
             <Link href={`/hands/${hand.id}`} key={index}>
               <a className="no-underline">
                 <HandTicket
+                  positions={posStr}
+                  xPot={xPotCount}
                   cards={cardList}
                   user={hand.user_id}
                   title={hand.title}
@@ -65,9 +106,6 @@ const hands: NextPage<Props> = ({ hands }) => {
         })}
       </div>
       <Space h={20} />
-      <Button component={NextLink} href="/">
-        homeへ
-      </Button>
     </Layout>
   )
 }

@@ -1,0 +1,33 @@
+mutation UpdateHands(
+  $id: uuid!
+  $handObj: hands_set_input
+  $potObj: [pots_insert_input!]!
+  $actionsObj: [actions_insert_input!]!
+  $handsCardsObj: [hands_cards_insert_input!]!
+) {
+  update_hands_by_pk(pk_columns: { id: $id }, _set: $handObj) {
+    id
+    title
+    es
+    content
+  }
+  delete_pots(where: { hand_id: { _eq: $id } }) {
+    affected_rows
+  }
+  insert_pots(objects: $potObj) {
+    affected_rows
+  }
+  delete_actions(where: { hand_id: { _eq: $id } }) {
+    affected_rows
+  }
+  insert_actions(objects: $actionsObj) {
+    affected_rows
+  }
+  delete_hands_cards(where: { hand_id: { _eq: $id } }) {
+    affected_rows
+  }
+  # [{hand_id: $id, card: {data: {mark: "c", num: "4",},on_conflict:{constraint:cards_num_mark_key,update_columns:[mark,num]}},order:0}]
+  insert_hands_cards(objects: $handsCardsObj) {
+    affected_rows
+  }
+}

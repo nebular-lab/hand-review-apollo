@@ -1,9 +1,12 @@
 overwrite: true
-schema: "https://hand-review-app.hasura.app/v1/graphql"
-documents: "src/queries/**/*.graphql"
+schema:
+  - 'https://hand-review-app.hasura.app/v1/graphql':
+      headers:
+        'x-hasura-admin-secret': 'afjd43b2ifwejb8stb'
+documents: 'src/queries/**/*.graphql'
 generates:
   src/types/generated/graphql.tsx:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

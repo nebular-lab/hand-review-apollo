@@ -81,11 +81,11 @@ const Action: FC<ActionProps> = (props) => {
     }
   }, [move])
   return (
-    <Grid className="w-32 mx-2 shadow-md">
+    <Grid.Col span={3} className="w-32 shadow-md  p-0 m-1">
       <Menu shadow="md">
         <Menu.Target>
           <Button
-            className="rounded-l-md rounded-r-none bg-slate-600 text-white w-[35%] text-sm p-1 border-2  hover:bg-slate-700"
+            className="rounded-l-md rounded-r-none bg-slate-600 text-white w-[35%] text-xs p-0 border-2  hover:bg-slate-700"
             onDoubleClick={() => onDoubleClickF(street, order)}
           >
             {posList.map((pos, index) => {
@@ -112,14 +112,14 @@ const Action: FC<ActionProps> = (props) => {
         <Menu.Target>
           {move === 'bet' || move === 'raise' || move === 'allin' ? (
             <Button
-              className={`rounded-l-none rounded-r-md text-white ${bg} w-[65%] text-sm p-1 border-2 ${hoverBg}  uppercase`}
+              className={`rounded-l-none rounded-r-md text-white ${bg} w-[65%] text-xs p-1 border-2 ${hoverBg}  uppercase`}
               onDoubleClick={() => onDoubleClickF(street, order)}
             >
               {`${move}` + ` ` + `${size}`}
             </Button>
           ) : (
             <Button
-              className={`rounded-l-none rounded-r-md text-white ${bg} w-[65%] text-sm p-1 border-2 ${hoverBg}  uppercase`}
+              className={`rounded-l-none rounded-r-md text-white ${bg} w-[65%] text-xs p-1 border-2 ${hoverBg}  uppercase`}
               onDoubleClick={() => onDoubleClickF(street, order)}
             >
               {move}
@@ -130,6 +130,7 @@ const Action: FC<ActionProps> = (props) => {
           {moveList.map((move, index) => (
             <Menu.Item
               key={index}
+              className="bg-red"
               onClick={() => {
                 onClickMoveF(move, street, order)
               }}
@@ -139,7 +140,7 @@ const Action: FC<ActionProps> = (props) => {
           ))}
         </Menu.Dropdown>
       </Menu>
-    </Grid>
+    </Grid.Col>
   )
 }
 

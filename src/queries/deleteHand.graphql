@@ -1,0 +1,5 @@
+mutation DeleteHands($id: uuid!) {
+  delete_hands_by_pk(id: $id) {
+    id
+  }
+}

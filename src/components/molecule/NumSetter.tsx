@@ -2,6 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import { Button, Grid } from '@mantine/core'
 // import { isOpenNumSetterVar, numVar, selectedCardVar } from 'cache'
 import Num from 'components/atom/Num'
+import PercentNum from 'components/atom/PercentNum'
 import _ from 'lodash'
 import React from 'react'
 import { useRecoilState } from 'recoil'
@@ -17,6 +18,7 @@ import {
 
 const NumSetter = () => {
   const nums = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
+  const percentNums = [25, 33, 50, 66, 75, 100, 120, 150, 200]
   // const settedNum = useReactiveVar(numVar)
   // const selectedCard = useReactiveVar(selectedCardVar)
   // const editingReview = useReactiveVar(editingReviewVar)
@@ -42,7 +44,16 @@ const NumSetter = () => {
           </Grid.Col>
         )
       })}
-      <Grid.Col span={8} className="text-2xl">
+      <Grid.Col span={8}></Grid.Col>
+      {percentNums.map((num) => {
+        return (
+          <Grid.Col key={num} span={3}>
+            <PercentNum num={num} />
+          </Grid.Col>
+        )
+      })}
+
+      <Grid.Col span={4} className="text-2xl">
         {settedNum}
       </Grid.Col>
 

@@ -4,18 +4,18 @@ import React, { memo } from 'react'
 import { useRecoilState } from 'recoil'
 import { settedNumState } from 'store/stores'
 
-const Num = memo(({ num }: { num: number }) => {
+const PercentNum = memo(({ num }: { num: number }) => {
   const [settedNum, setSettedNum] = useRecoilState(settedNumState)
   return (
     <Button
     
       className="w-full rounded-sm h-9 justify-center flex items-center text-xl shadow-md"
-      onClick={() => setSettedNum(settedNum * 10 + num)}
+      onClick={() => setSettedNum(num)}
     >
       {num}
     </Button>
   )
 })
-Num.displayName = 'Num'
+PercentNum.displayName = 'PercentNum'
 
-export default Num
+export default PercentNum
