@@ -1,4 +1,4 @@
-import NextAuth from 'components/organism/nextAuth'
+import NextAuth from 'components/organism/NextAuth'
 import { Layout } from 'components/template/Layout'
 import React from 'react'
 
