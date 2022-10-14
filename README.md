@@ -1,3 +1,6 @@
+## 現在以下ののレポジトリで開発しています。
+
+https://github.com/nebular-lab/hand-review-lab
 
 ## ポーカー研究ノート(仮)
 https://hand-review-apollo-jaek2bojk-nebular-lab.vercel.app
