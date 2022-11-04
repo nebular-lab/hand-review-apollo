@@ -1,4 +1,4 @@
-## 現在以下ののレポジトリで開発しています。
+## 現在以下のレポジトリで開発しています。
 
 https://github.com/nebular-lab/hand-review-lab
 
